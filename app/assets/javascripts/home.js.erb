@@ -1,0 +1,173 @@
+$(document).ready(function(){
+
+L.Icon.Default.imagePath = "/assets"
+console.log(L.Icon.Default.imagePath);
+
+var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png',
+    cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade';
+
+var nightTime = L.tileLayer(cloudmadeUrl, {
+        styleId:999
+    });
+
+var googleRoadMap = new L.Google('ROADMAP');
+var googleHybrid = new L.Google('HYBRID');
+
+var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:limite_municipal',
+            format: 'image/png',
+            transparent: true
+        });
+
+
+
+// create a map in the "map" div, set the view to a given place and zoom
+var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, googleRoadMap]}).setView([-22.511447, -44.108906], 13);
+
+/*geojson*/
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function style(feature) {
+    return {
+        fillColor: '#FF0000',
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.3
+    };
+}
+
+function onEducacaoFeature(feature, layer) {    
+    if (feature.properties && feature.properties.nome) {
+        layer.bindPopup("<p><b>Nome:</b> "+feature.properties.nome+"</p>");
+    }
+}
+
+function onLotesFeatures(feature, layer) {    
+   // if (feature.properties && feature.properties.cadastro) {
+         layer.bindPopup("<p><h4>Informações:</h4>"+
+          "<b>Inscrição:</b> "+feature.properties.cadastro+"</br>"+
+          "<b>Proprietário:</b> "+feature.properties.proprietario+"</br>"+
+            "<b>Situação:</b> "+feature.properties.situacao+"</br>"+
+            "<b>Tipo de Obra:</b> "+feature.properties.tipoobra+"</br>"+
+            "<b>Loteamento:</b> "+feature.properties.loteamento+"</br>"+
+            "<b>Tipo de Terreno:</b> "+feature.properties.tipoterreno+"</br>"+
+            "<b>Identificação de Quadra:</b> "+feature.properties.identquadra+"</br>"+
+            "<b>Testada:</b> "+feature.properties.testada+"</br>"+
+            "<b>Área do Lote:</b> "+feature.properties.areadolote+"</br>"+
+            "<b>Área Construída:</b> "+feature.properties.areaconstruida+"</br>"+
+            "<b>Conservação:</b> "+feature.properties.conservacao+"</br>"+
+            "<b>Benefício:</b> "+feature.properties.beneficio+"</br>"+
+            "<b>Melhoria:</b> "+feature.properties.melhoria+"</br>"+
+            "<b>Data Cadastro:</b> "+feature.properties.dtcadastro+"</br>"+
+            "</p>");
+    //}
+}
+
+var educacao = new L.GeoJSON(null, {onEachFeature: onEducacaoFeature});
+var lotes = new L.GeoJSON(null, {onEachFeature: onLotesFeatures, style: style});
+
+
+function educacaoJson(data) {
+  educacao.addData(data);
+}
+
+function lotesJson(data) {    
+    lotes.addData(data);
+    map.fitBounds(lotes.getBounds());
+}
+
+$("#btnInsc").click( function()
+   {
+     //var inscricao = $("#insc").val();
+
+        if (!$("#insc").val().length == 0){
+            lotes.clearLayers();
+            $.ajax({
+              url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr_fazenda&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro="+$("#insc").val()+")&format_options=callback:getJson",
+              dataType : 'jsonp',
+              jsonpCallback: 'getJson',
+              success: lotesJson
+            });
+            lotes.addTo(map);            
+
+        }else{
+        alert("Inscrição não encontrada!");
+        }
+   }
+);
+
+
+
+/*$.ajax({
+  url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:educacao_municipal&srsName=EPSG:4326&outputFormat=json&format_options=callback:getJson",
+  dataType : 'jsonp',
+  jsonpCallback: 'getJSON',
+  success: educacaoJson
+});*/
+/*
+$.ajax({
+  url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro='11310184')&format_options=callback:getJson",
+  dataType : 'jsonp',
+  jsonpCallback: 'getJson',
+  success: bairroJson
+});
+*/
+/* fim geojson */
+
+var baseMaps = {
+    //"Minimal": minimal,
+    "Google": googleRoadMap,
+    "Google Hibrido": googleHybrid,
+    "Noturno": nightTime
+
+};
+
+var overlayMaps = {
+    "Limite Municipal": limite,
+    //"Educação Municipal": educacao,
+    //"Lotes": lotes
+  
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+/*
+var editableLayers = new L.FeatureGroup();
+
+map.addLayer(editableLayers);
+
+var options = {
+    position: 'topleft',
+     draw: {
+        polygon: false,
+        circle: false,
+        rectangle: false,
+        polyline: false,
+        marker: {title: "Adicionar marcador"}
+    },    
+    edit: {
+        featureGroup: editableLayers, //REQUIRED!!
+    }
+};
+
+var drawControl = new L.Control.Draw(options);
+map.addControl(drawControl);
+
+map.on('draw:created', function (e) {
+    var type = e.layerType,
+        layer = e.layer;
+
+    if (type === 'marker') {
+        layer.bindPopup('<b>A popup!</b>');
+    }
+
+    editableLayers.addLayer(layer);
+    console.log("Adicionando: "+layer)
+});*/
+
+});

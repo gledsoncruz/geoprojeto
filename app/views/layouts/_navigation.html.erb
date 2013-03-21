@@ -1,0 +1,35 @@
+<% if user_signed_in? %>
+<div class="navbar navbar-fluid-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "SIGGEO-WEB", root_path, :class => 'brand' %>
+      <div class="container-fluid nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "Link1", "/path1"  %></li>          
+        </ul>
+
+        <form class="navbar-search pull-left">
+          <input id="insc" type="text" class="search-query" placeholder="Inscrição Municipal...">
+          <button id="btnInsc" type="button" class="btn">Consultar</button>
+        </form>
+
+        <!-- Devise -->
+        <p class="navbar-text pull-right">
+        
+          Usuário: <strong><%= current_user.name %></strong>.
+          <%= link_to 'Editar Perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link'  %>
+        
+        
+      </p>
+
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+<% end %>
