@@ -1,0 +1,19 @@
+development:
+  adapter: postgis
+  encoding: UTF8
+  database: georails_dev
+  pool: 5
+  username: geo
+  password: geo
+  schema_search_path: "public,postgis"
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
+
+test:
+  adapter: postgis
+  encoding: UTF8
+  database: georails_test
+  pool: 5
+  username: geo
+  password: geo
+  schema_search_path: "public,postgis"
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
