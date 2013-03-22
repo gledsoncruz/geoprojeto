@@ -8,7 +8,7 @@ set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
-set :scm, "git"
+set :scm, "ssh"
 set :repository, "ssh://git@10.1.0.73:22222/#{application}.git"
 set :branch, "master"
 
