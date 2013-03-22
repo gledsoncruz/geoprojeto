@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "geo.epdvr.com.br", :web, :app, :db, :primary => true
+server "10.1.0.73", :web, :app, :db, :primary => true
 
 set :application, "geoprojeto"
 set :user, "deployer"
