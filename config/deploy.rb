@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "10.1.0.73", :web, :app, :db, :primary => true
+server "10.1.0.73:22222", :web, :app, :db, :primary => true
 
 set :application, "geoprojeto"
 set :user, "deployer"
@@ -8,7 +8,7 @@ set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
-set :scm, "ssh"
+set :scm, "git"
 set :repository, "ssh://git@10.1.0.73:22222/#{application}.git"
 set :branch, "master"
 
