@@ -2,6 +2,13 @@ $(document).ready(function(){
 
 $("#insc").attr('maxlength','8');
 
+
+$("#frmcons").keypress(function(e) {
+  if ( e.which == 13 ) 
+    return false;   
+});
+
+
 L.Icon.Default.imagePath = "/assets"
 console.log(L.Icon.Default.imagePath);
 
