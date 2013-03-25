@@ -4,6 +4,8 @@ Geo::Application.routes.draw do
 
   root :to => 'home#index'
 
+  match '*a', :to => 'errors#routing'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,4 +1,6 @@
-<h2>Esqueceu sua senha?</h2>
+<div style="padding-top: 80px">
+	<div class="form-signin">
+<h3>Esqueceu sua senha?</h3>
 
 <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= f.error_notification %>
@@ -8,7 +10,14 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Enviar instruções para redefinir senha", :class => 'btn btn-primary' %>
+    <%= f.button :submit, "Enviar instruções", :class => 'btn btn-primary' %>    
+    <%= link_to 'Cancelar', root_path, :class => 'btn btn-danger' %>
   </div>
-<% end %>
 
+
+<% end %>
+</div>
+<center>
+<%=link_to(image_tag("logo-epd.bmp",:size => "109x10")) %>
+</center>
+</div>
