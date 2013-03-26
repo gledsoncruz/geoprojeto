@@ -10,4 +10,15 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   ROLES = %w[admin usuario bloqueado]
+
+
+   def self.search(search)
+    
+    if search
+      where('name LIKE ?', "#{search}%")
+    else
+      scoped
+    end
+  end
+
 end

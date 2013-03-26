@@ -22,16 +22,12 @@ class ApplicationController < ActionController::Base
    end
   end
 
-  
+ 
 def admin_filter_registrations
   
-     if (controller_name == 'registrations' && action_name == 'new')  
-        if current_user.role != "admin"
-          #poderia redirecionar para uma página de erro   
-          redirect_to root_path  
-        end  
-     end
-      
+     if (controller_name == 'registrations' && action_name == 'new')        
+          redirect_to root_url        
+     end      
 end  
 
 end

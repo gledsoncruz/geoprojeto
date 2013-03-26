@@ -7,8 +7,8 @@ class Ability
 
     if user.role == "admin"
       can :manage, :all
-    else
-      can :read, :all
+    #else
+     # can :read, Home
     end
 
     # Define abilities for the passed in user here. For example:
