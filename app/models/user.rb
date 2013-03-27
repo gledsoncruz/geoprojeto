@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :role, :active
   # attr_accessible :title, :body
 
-  ROLES = %w[admin usuario bloqueado]
+  ROLES = %w[admin usuario]
 
 
    def self.search(search)
@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
     else
       scoped
     end
+  end
+
+  def active_for_authentication?
+    active
+  end
+
+  def inactive_message
+    "Desculpe, sua conta foi desativada."
   end
 
 end

@@ -11,14 +11,14 @@
       <div class="container-fluid nav-collapse">
         <ul class="nav">
           <% if can? :update, User %>
-          <li><%= link_to "Usuários", "#"  %></li>
+          <li><%= link_to "Usuários", users_path  %></li>
           <% end %>
         </ul>       
         <!-- Devise -->
         
         <p class="navbar-text pull-right">
         
-          Usuário: <%= link_to current_user.name, edit_user_registration_path,:class => 'navbar-link' %>
+          Usuário: <%= link_to current_user.name, edit_user_path(current_user),:class => 'navbar-link' %>
           <!--%= link_to 'Editar Perfil', edit_user_registration_path, :class => 'navbar-link' %--> 
           
             <%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link', :style => 'padding-left:30px'  %>  

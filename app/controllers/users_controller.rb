@@ -1,4 +1,49 @@
 class UsersController < ApplicationController
+  
+  load_and_authorize_resource :except => [:edit, :show]  
+
   def index
+    @users = User.accessible_by(current_ability).search(params[:search]).paginate(:page => params[:page], :per_page => 10).order('id DESC')
   end
+
+  def show
+    @user = User.accessible_by(current_ability).find(params[:id])
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def edit
+
+    @user = User.accessible_by(current_ability).find(params[:id])
+  end
+
+  def create
+    @user = User.new(params[:user])
+
+    if @user.save
+      redirect_to users_path, :flash => { :success => 'Usuário criado com sucesso.' }
+    else
+      render :action => 'new'
+    end
+  end
+
+  def update
+    @user = User.accessible_by(current_ability).find(params[:id])
+
+    if @user.update_attributes(params[:user])
+      sign_in(@user, :bypass => true) if @user == current_user
+      redirect_to users_path, :flash => { :success => 'Usuário alterado com sucesso.' }
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    @user = User.accessible_by(current_ability).find(params[:id])
+    @user.destroy
+    redirect_to users_path, :flash => { :success => 'Usuário apagado com sucesso.' }
+  end
+
 end

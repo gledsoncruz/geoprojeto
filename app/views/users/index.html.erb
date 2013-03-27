@@ -1,0 +1,28 @@
+<h3>Lista de Usuários</h3>
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th colspan=3 style="text-align: center;">Ações</th>    
+  </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>        
+        <td><%= user.email %></td>
+        <td style="text-align: center;"><%= link_to '', user, :class => 'icon-search', :title => 'Visualizar' %></td>
+        <% if can? :update, User %>
+          <td style="text-align: center;"><%= link_to '', edit_user_path(user), :class => 'icon-pencil', :title => 'Editar' %></td>
+            <% if can? :delete, User %>
+            <td style="text-align: center;"><%= link_to '', user, :class => 'icon-trash', :method => :delete, :data => { :confirm => 'Are you sure?' }, :title => 'Apagar' %></td>
+            <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @users, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>
+<%= link_to 'Novo Usuário', new_user_path, :class => 'btn btn-primary' %>
