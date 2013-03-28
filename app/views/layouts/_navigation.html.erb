@@ -10,7 +10,7 @@
       <%= link_to "SIGGeo-Web", root_path, :class => 'brand' %>
       <div class="container-fluid nav-collapse">
         <ul class="nav">
-          <% if can? :update, User %>
+          <% if current_user.role == "admin" %>
           <li><%= link_to "Usuários", users_path  %></li>
           <% end %>
         </ul>       
