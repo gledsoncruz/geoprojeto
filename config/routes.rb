@@ -2,7 +2,7 @@ Geo::Application.routes.draw do
 
   resources :users
 
-  devise_for :users, :skip => [:registrations, :sessions, :passwords]
+  devise_for :users, :skip => [:registrations, :sessions]
 
 
   as :user do
