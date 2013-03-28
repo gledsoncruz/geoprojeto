@@ -30,6 +30,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
     @user = User.accessible_by(current_ability).find(params[:id])
 
     if @user.update_attributes(params[:user])
