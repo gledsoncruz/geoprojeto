@@ -1,5 +1,7 @@
 Geo::Application.routes.draw do
 
+  get "mapas/index"
+
   #resources :users
 
   devise_for :users, :path_prefix => 'geo'#, :skip => [:registrations, :sessions]

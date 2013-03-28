@@ -47,3 +47,16 @@ height: auto;
 margin-bottom: 15px;
 padding: 7px 9px;
 }
+
+div.dialog {
+      width: 25em;
+      padding: 0em 4em;
+      margin: 4em auto 0 auto;
+      border: 1px solid #ccc;
+      border-right-color: #999;
+      border-bottom-color: #999;
+    }
+
+table.padded-table td{
+    padding:0px 20px 10px 20px;
+}

@@ -1,5 +1,20 @@
-<div id="map"style="position: absolute; left: 0; width: 100%; height: 90%;"></div>
-<form class="navbar-search" id="frmcons" style="padding-left:40px">
-	<input id="insc" type="text" class="search-query" placeholder="Inscrição Municipal...">
-	<button id="btnInsc" type="button" class="btn btn-primary">Consultar</button>
-</form>
+<div class="dialog">
+    
+  <center>
+  	<h3>Painel de Controle</h3>
+  	<table class="padded-table" border=0>	  
+		<tbody>    
+	      <tr style="text-align: center;">
+	        <td><%=link_to(image_tag("user.png", :size => "100x100"), users_path) %></td>
+	        <td><%=link_to(image_tag("earth.png"), "/mapas/index") %></td>
+	        <td><%=link_to(image_tag("exit.png"), destroy_user_session_path, :method => :delete) %></td>
+	      </tr>
+	      <tr style="text-align: center;">
+	      	<td>Gerenciar Usuários</td>
+	      	<td>Mapa Virtual</td>
+	      	<td>Sair</td>
+	      </tr>
+	  	</tbody>
+    </table>
+  </center> 
+</div>
