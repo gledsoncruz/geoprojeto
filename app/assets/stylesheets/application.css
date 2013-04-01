@@ -57,6 +57,6 @@ div.dialog {
       border-bottom-color: #999;
     }
 
-table.padded-table td{
-    padding:0px 20px 10px 20px;
+.span1 {
+    text-align: center;
 }
