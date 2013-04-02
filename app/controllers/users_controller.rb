@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
-  
-  load_and_authorize_resource :except => [:edit, :show]  
+
+  load_and_authorize_resource :except => [:edit, :show]
+
+  def logged
+    #User.find(:all, :conditions => ["current_sign_in_ip != '' "])
+    @users = User.find(:all, :conditions => ['last_request_at >= ?', 5.minutes.ago.utc])
+    #respond_to do |format|
+      #format.html
+      #format.json { render :json => @users }
+      #format.js
+    #end
+
+  end
 
   def index
     @users = User.accessible_by(current_ability).search(params[:search]).paginate(:page => params[:page], :per_page => 10).order('id DESC')

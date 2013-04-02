@@ -1,0 +1,41 @@
+
+<div id="users">
+  <h3>Lista de Usuários</h3>
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Acessos</th>
+    <th>Último acesso</th>
+    <th>IP</th>
+    <th>Última requisição</th>
+    <th>Data do Registro</th>
+    <th colspan=3 style="text-align: center;">Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.last_sign_in_at.to_s(:data_br) %> às <%= user.last_sign_in_at.utc.to_s(:hora) %></td>
+        <td><%= user.last_sign_in_ip %></td>
+        <td><%= user.last_request_at.utc.to_s(:hora) %></td>
+        <td><%= user.created_at.utc.to_s(:data_br) %></td>
+        <td style="text-align: center;"><%= link_to '', user, :class => 'icon-search', :title => 'Visualizar' %></td>
+        <% if can? :update, User %>
+          <td style="text-align: center;"><%= link_to '', edit_user_path(user), :class => 'icon-pencil', :title => 'Editar' %></td>
+            <% if can? :delete, User %>
+            <td style="text-align: center;"><%= link_to '', user, :class => 'icon-trash', :method => :delete, :data => { :confirm => 'Are you sure?' }, :title => 'Apagar' %></td>
+            <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Voltar', root_url, :class => 'btn btn-primary' %>
+</div>
+
+<br />

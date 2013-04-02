@@ -58,8 +58,10 @@ function onEducacaoFeature(feature, layer) {
 
 function onLotesFeatures(feature, layer) {
    // if (feature.properties && feature.properties.cadastro) {
+
+
          layer.bindPopup("<p><h4>Informações:</h4>"+
-          "<b>Inscrição:</b> "+feature.properties.cadastro+"</br>"+
+          "<b>Inscrição:</b> "+feature.properties.cadastro+"</br>"+/*
           "<b>Proprietário:</b> "+feature.properties.proprietario+"</br>"+
             "<b>Situação:</b> "+feature.properties.situacao+"</br>"+
             "<b>Tipo de Obra:</b> "+feature.properties.tipoobra+"</br>"+
@@ -72,13 +74,14 @@ function onLotesFeatures(feature, layer) {
             "<b>Conservação:</b> "+feature.properties.conservacao+"</br>"+
             "<b>Benefício:</b> "+feature.properties.beneficio+"</br>"+
             "<b>Melhoria:</b> "+feature.properties.melhoria+"</br>"+
-            "<b>Data Cadastro:</b> "+feature.properties.dtcadastro+"</br>"+
+            "<b>Data Cadastro:</b> "+feature.properties.dtcadastro+"</br>"+*/
             "</p>");
     //}
 }
 
 var educacao = new L.GeoJSON(null, {onEachFeature: onEducacaoFeature});
 var lotes = new L.GeoJSON(null, {onEachFeature: onLotesFeatures, style: style});
+var lotesCount = 0;
 
 
 function educacaoJson(data) {
@@ -87,6 +90,8 @@ function educacaoJson(data) {
 
 function lotesJson(data) {
     lotes.addData(data);
+    lotesCount = Object.keys(data.features).length;
+    console.log(lotesCount);
     map.fitBounds(lotes.getBounds());
 }
 
@@ -97,7 +102,7 @@ $("#btnInsc").click( function()
         if (!$("#insc").val().length == 0){
             lotes.clearLayers();
             $.ajax({
-              url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr_fazenda&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro="+$("#insc").val()+")&format_options=callback:getJson",
+              url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro="+$("#insc").val()+")&format_options=callback:getJson",
               dataType : 'jsonp',
               jsonpCallback: 'getJson',
               success: lotesJson

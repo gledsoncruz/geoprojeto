@@ -7,9 +7,9 @@
   	<%= f.input :name, :required => true, :autofocus => true %>
     <%= f.input :email, :required => true %>
     <%= f.input :password, :autocomplete => "off", :hint => "Deixe em branco caso não queira alterar", :required => false  %>
-    <%= f.input :password_confirmation, :required => true %>   
-    <% if current_user.role == "admin" %> 
-    	<%= f.input :role, :collection => User::ROLES %>    
+    <%= f.input :password_confirmation, :required => true %>
+    <% if current_user.role == "admin" %>
+    	<%= f.input :role, :collection => User::ROLES %>
     	<%= f.input :active %>
     <% end %>
   </div>

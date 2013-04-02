@@ -5,7 +5,10 @@ Geo::Application.routes.draw do
   #resources :users
 
   devise_for :users, :path_prefix => 'geo'#, :skip => [:registrations, :sessions]
-  resources :users
+
+  resources :users do
+    get 'logged', :on => :collection
+  end
 =begin
 
   as :user do
