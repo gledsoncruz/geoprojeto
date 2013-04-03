@@ -1,6 +1,11 @@
 Geo::Application.routes.draw do
 
   get "mapas/index"
+  match 'mapas/:insc_base' => 'mapas#show'
+
+  # resources :mapas do
+
+  # end
 
   #resources :users
 
