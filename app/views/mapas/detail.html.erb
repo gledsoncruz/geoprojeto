@@ -1,0 +1,25 @@
+<h3><%= @fazenda.proprietario %></h3>
+
+<dl class="dl-horizontal">
+  <dt>Inscrição:</dt>
+  <dd><%= @fazenda.inscricao %></dd>
+  <dt>CPF/CGC:</dt>
+  <dd><%= @fazenda.cpfcgc %></dd>
+  <dt>Endereço:</dt>
+  <dd><%= @fazenda.localizimovel%>, <%= @fazenda.numero%></dd>
+  <dt>Complemento:</dt>
+  <dd><%= @fazenda.compl %></dd>
+  <dt>Bairro:</dt>
+  <dd><%= @fazenda.bairro %></dd>
+  <dt>Loteamento:</dt>
+  <dd><%= @fazenda.loteamento %></dd>
+  <dt>CEP:</dt>
+  <dd><%= @fazenda.cep %></dd>
+  <dt>Área do Lote:</dt>
+  <dd><%= @fazenda.areadolote %>m2</dd>
+  <dt>Área Construída:</dt>
+  <dd><%= @fazenda.areaconstruida %>m2</dd>
+
+</dl>
+
+<%= link_to 'Voltar', :back %>

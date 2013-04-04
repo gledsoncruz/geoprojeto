@@ -2,7 +2,7 @@
 
 <% if can? :update, User %>
 <%= form_tag :method => 'get', :class => 'form-search', :id => 'mapas_search' do %>
-  <%= text_field_tag :search, params[:search], :class => 'input-medium search-query' %>
+  <%= text_field_tag :search, params[:search], :class => 'input-medium search-query', :id => 'input_search', :placeholder => 'Proprietário' %>
     <%= submit_tag "Consultar", :proprietario => nil, :class => 'btn btn-primary' %>
 <% end %>
 <% end %>
@@ -13,7 +13,10 @@
     <th>Inscrição</th>
     <th>Proprietário</th>
     <th>Loteamento</th>
+    <th>Tipo Obra</th>
+    <th>Tipo Imóvel</th>
     <th>Situação</th>
+    <th>Detalhes</th>
   </tr>
   </thead>
   <tbody>
@@ -22,7 +25,10 @@
         <td><%= fazenda.inscricao %></td>
         <td><%= fazenda.proprietario %></td>
         <td><%= fazenda.loteamento %></td>
+        <td><%= fazenda.tipoobra %></td>
+        <td><%= fazenda.tipoimovel %></td>
         <td><%= fazenda.situacao %></td>
+        <td style="text-align: center;"><%= link_to '', mapas_detail_path(fazenda.id), :class => 'icon-search', :title => 'Visualizar'%></td>
       </tr>
     <% end %>
   </tbody>

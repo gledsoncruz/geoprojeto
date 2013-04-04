@@ -1,13 +1,9 @@
 Geo::Application.routes.draw do
 
+
   get "mapas/index"
-  match 'mapas/:insc_base' => 'mapas#show'
-
-  # resources :mapas do
-
-  # end
-
-  #resources :users
+  match 'mapas/show/:insc_base' => 'mapas#show'
+  match 'mapas/detail/:id' => 'mapas#detail', :as => :mapas_detail
 
   devise_for :users, :path_prefix => 'geo'#, :skip => [:registrations, :sessions]
 
