@@ -9,6 +9,7 @@ class Ability
       can :manage, :all
     else
       can [:read, :update], User, :id => user.id
+      can :read, Fazenda
     end
 
     # Define abilities for the passed in user here. For example:
