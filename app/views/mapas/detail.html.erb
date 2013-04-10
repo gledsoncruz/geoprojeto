@@ -1,25 +1,67 @@
+
+<div style="position: relative;">
 <h3><%= @fazenda.proprietario %></h3>
+<input type="hidden" id="insc_detail" value="<%= @fazenda.insc_base %>" />
+<table class="table table-bordered table-hover table-condensed">
+  <tbody>
+      <tr>
+        <td><b>Inscrição Base:</b></td>
+        <td><%= @fazenda.insc_base %></td>
+        <td rowspan="13" style="width:60%"><div id="map" style="height: 350px"></div></td>
+      </tr>
+      <tr>
+        <td><b>Inscrição:</b></td>
+        <td><%= @fazenda.inscricao %></td>
+      </tr>
+      <tr>
+        <td><b>Responsável:</b></td>
+        <td><%= @fazenda.responsavel %></td>
+      </tr>
+      <tr>
+        <td><b>Padrão:</b></td>
+        <td><%= @fazenda.padrao %></td>
+      </tr>
+       <tr>
+        <td><b>Tipo Obra:</b></td>
+        <td><%= @fazenda.tipoobra %></td>
+      </tr>
+      <tr>
+        <td><b>CPF/CGC:</b></td>
+        <td><%= @fazenda.cpfcgc %></td>
+      </tr>
+      <tr>
+        <td><b>Endereço:</b></td>
+        <td><%= @fazenda.localizimovel %>, <%= @fazenda.numero%></td>
+      </tr>
+      <tr>
+        <td><b>Complemento:</b></td>
+        <td><%= @fazenda.compl %></td>
+      </tr>
+      <tr>
+        <td><b>Bairro:</b></td>
+        <td><%= @fazenda.bairro %></td>
+      </tr>
+      <tr>
+        <td><b>Loteamento:</b></td>
+        <td><%= @fazenda.loteamento %></td>
+      </tr>
+      <tr>
+        <td><b>CEP:</b></td>
+        <td><%= @fazenda.cep %></td>
+      </tr>
+      <tr>
+        <td><b>Área do Lote:</b></td>
+        <td><%= @fazenda.areadolote %></td>
+      </tr>
+      <tr>
+        <td><b>Área construída:</b></td>
+        <td><%= @fazenda.areaconstruida %></td>
+      </tr>
 
-<dl class="dl-horizontal">
-  <dt>Inscrição:</dt>
-  <dd><%= @fazenda.inscricao %></dd>
-  <dt>CPF/CGC:</dt>
-  <dd><%= @fazenda.cpfcgc %></dd>
-  <dt>Endereço:</dt>
-  <dd><%= @fazenda.localizimovel%>, <%= @fazenda.numero%></dd>
-  <dt>Complemento:</dt>
-  <dd><%= @fazenda.compl %></dd>
-  <dt>Bairro:</dt>
-  <dd><%= @fazenda.bairro %></dd>
-  <dt>Loteamento:</dt>
-  <dd><%= @fazenda.loteamento %></dd>
-  <dt>CEP:</dt>
-  <dd><%= @fazenda.cep %></dd>
-  <dt>Área do Lote:</dt>
-  <dd><%= @fazenda.areadolote %>m2</dd>
-  <dt>Área Construída:</dt>
-  <dd><%= @fazenda.areaconstruida %>m2</dd>
-
-</dl>
-
+  </tbody>
+</table>
 <%= link_to 'Voltar', :back %>
+</div>
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+<%= javascript_include_tag "application", "mapa/mapadetail" %>
+

@@ -1,5 +1,5 @@
 <h3>Listagem da inscrição raiz: <%=params[:insc_base]  %></h3>
-
+<input type="hidden" id="insc_base" value="<%=params[:insc_base]%>"/>
 <% if can? :update, User %>
 <%= form_tag :method => 'get', :class => 'form-search', :id => 'mapas_search' do %>
   <%= text_field_tag :search, params[:search], :class => 'input-medium search-query', :id => 'input_search', :placeholder => 'Proprietário' %>
@@ -28,7 +28,7 @@
         <td><%= fazenda.tipoobra %></td>
         <td><%= fazenda.tipoimovel %></td>
         <td><%= fazenda.situacao %></td>
-        <td style="text-align: center;"><%= link_to '', mapas_detail_path(fazenda.id), :class => 'icon-search', :title => 'Visualizar'%></td>
+        <td style="text-align: center;"><%= link_to '', mapas_detail_path(fazenda.id), :class => 'icon-search', :title => 'Visualizar', :id => 'showLote' %></td>
       </tr>
     <% end %>
   </tbody>

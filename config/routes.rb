@@ -3,6 +3,7 @@ Geo::Application.routes.draw do
 
   get "mapas/index"
   match 'mapas/show/:insc_base' => 'mapas#show'
+  #match 'mapas/geolotes/:insc_base' => 'mapas#geolotes', :as => :mapas_geolotes
   match 'mapas/detail/:id' => 'mapas#detail', :as => :mapas_detail
 
   devise_for :users, :path_prefix => 'geo'#, :skip => [:registrations, :sessions]

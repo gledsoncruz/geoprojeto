@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403123513) do
+ActiveRecord::Schema.define(:version => 20130405132644) do
 
   create_table "fazendas", :force => true do |t|
     t.integer  "insc_base"
@@ -51,6 +51,11 @@ ActiveRecord::Schema.define(:version => 20130403123513) do
     t.string   "dtcadastro",     :limit => 11
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "lotesvrs", :force => true do |t|
+    t.integer "insc_base"
+    t.spatial "the_geom",  :limit => {:type=>"geometry", :srid=>29193}
   end
 
   create_table "users", :force => true do |t|

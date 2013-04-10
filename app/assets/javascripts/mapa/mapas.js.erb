@@ -98,25 +98,30 @@ function lotesJson(data) {
     map.fitBounds(lotes.getBounds());
 }
 
+function carregarLayer(insc){
+
+ console.log(insc);
+  lotes.clearLayers();
+  $.ajax({
+    url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro='"+insc+"')&format_options=callback:getJson",
+    dataType : 'jsonp',
+    jsonpCallback: 'getJson',
+    success: lotesJson
+  });
+  lotes.addTo(map);
+}
+
 $("#btnInsc").click( function()
-   {
-     //var inscricao = $("#insc").val();
+{
+  //console.log($("#insc").val());
+  carregarLayer($("#insc").val())
+});
 
-        if (!$("#insc").val().length == 0){
-            lotes.clearLayers();
-            $.ajax({
-              url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro="+$("#insc").val()+")&format_options=callback:getJson",
-              dataType : 'jsonp',
-              jsonpCallback: 'getJson',
-              success: lotesJson
-            });
-            lotes.addTo(map);
-
-        }else{
-        alert("Inscrição não encontrada!");
-        }
-   }
-);
+$("#showLote").click( function()
+{
+  console.log($("#insc_base").val());
+  carregarLayer($("#insc_base").val())
+});
 
 
 

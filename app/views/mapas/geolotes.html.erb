@@ -1,0 +1,18 @@
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>Inscrição</th>
+    <th>Geometria</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @lotesvrs.each do |lotes| %>
+      <tr>
+        <td><%= lotes.insc_base %></td>
+        <td><%= lotes.the_geom.as_text %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @lotesvrs, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>
