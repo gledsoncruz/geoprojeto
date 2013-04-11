@@ -15,8 +15,15 @@ class MapasController < ApplicationController
   	@fazenda = Fazenda.accessible_by(current_ability).find(params[:id])
   	respond_to do |format|
       format.html
+      format.xml { render :xml => @fazenda }
       format.json { render :json => @fazenda }
       format.js
+      format.pdf do
+        pdf = InscDetailPdf.new(@fazenda)
+        send_data pdf.render, :filename => "#{@fazenda.inscricao}.pdf",
+                              :type => "application/pdf",
+                              :disposition => "inline"
+      end
     end
   end
 =begin
