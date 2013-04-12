@@ -28,10 +28,22 @@ var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
             transparent: true
         });
 
+var bairros = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:bairros_oficial',
+            format: 'image/png',
+            transparent: true
+        });
+
+
+var zoneamento = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:zonas',
+            format: 'image/png',
+            transparent: true
+        });
 
 
 // create a map in the "map" div, set the view to a given place and zoom
-var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, googleRoadMap]}).setView([-22.511447, -44.108906], 13);
+var map = L.map('map', {maxZoom: 25, minZoom: 13, layers: [limite, bairros, googleRoadMap]}).setView([-22.511447, -44.108906], 13);
 
 /*geojson*/
 
@@ -151,6 +163,8 @@ var baseMaps = {
 
 var overlayMaps = {
     "Limite Municipal": limite,
+    "Bairros": bairros,
+    //"Zoneamento": zoneamento
     //"Educação Municipal": educacao,
     //"Lotes": lotes
 
