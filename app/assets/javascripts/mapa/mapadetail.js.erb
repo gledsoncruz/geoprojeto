@@ -17,7 +17,7 @@ var nightTime = L.tileLayer(cloudmadeUrl, {
     });
 
 var googleRoadMap = new L.Google('ROADMAP');
-var googleHybrid = new L.Google('HYBRID');
+var googleHybrid = new L.Google('SATELLITE');
 
 var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
             layers: 'nebulosa:limite_municipal',
@@ -25,8 +25,20 @@ var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
             transparent: true
         });
 
+var zoneamento = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:zonas',
+            format: 'image/png',
+            transparent: true
+        });
+
+var logradouros = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:eixo_rua',
+            format: 'image/png',
+            transparent: true
+        });
+
 // create a map in the "map" div, set the view to a given place and zoom
-var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, googleHybrid]}).setView([-22.511447, -44.108906], 13);
+var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, logradouros, googleHybrid]}).setView([-22.511447, -44.108906], 13);
 
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
@@ -68,7 +80,9 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "Limite Municipal": limite
+    "Limite Municipal": limite,
+    "Zoneamento": zoneamento,
+    "Logradouros": logradouros
 };
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
