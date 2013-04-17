@@ -13,13 +13,14 @@ class MapasController < ApplicationController
 
   def detail
   	@fazenda = Fazenda.accessible_by(current_ability).find(params[:id])
+    @zoneamentos = Zoneamento.find_by_sql("SELECT distinct on (sigla) sigla, atividade from zoneamentos, lotesvrs where lotesvrs.insc_base = "+@fazenda.insc_base.to_s+" and lotesvrs.the_geom && zoneamentos.the_geom and st_intersects(lotesvrs.the_geom, zoneamentos.the_geom)")
   	respond_to do |format|
       format.html
-      format.xml { render :xml => @fazenda }
-      format.json { render :json => @fazenda }
+      format.xml { render :xml => [@fazenda, @zoneamentos] }
+      format.json { render :json => [@fazenda, @zoneamentos] }
       format.js
       format.pdf do
-        pdf = InscDetailPdf.new(@fazenda)
+        pdf = InscDetailPdf.new(@fazenda, @zoneamentos)
         send_data pdf.render, :filename => "#{@fazenda.inscricao}.pdf",
                               :type => "application/pdf",
                               :disposition => "inline"

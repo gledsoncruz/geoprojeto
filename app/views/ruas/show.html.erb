@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id rua:</b>
+  <%= @rua.id_rua %>
+</p>
+
+<p>
+  <b>Nome:</b>
+  <%= @rua.nome %>
+</p>
+
+<p>
+  <b>The geom:</b>
+  <%= @rua.the_geom %>
+</p>
+
+
+<%= link_to 'Edit', edit_rua_path(@rua) %> |
+<%= link_to 'Back', ruas_path %>

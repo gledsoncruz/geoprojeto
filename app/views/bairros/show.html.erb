@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @bairro.nome %>
+</p>
+
+<p>
+  <b>Popmasc:</b>
+  <%= @bairro.popmasc %>
+</p>
+
+<p>
+  <b>Popfem:</b>
+  <%= @bairro.popfem %>
+</p>
+
+<p>
+  <b>The geom:</b>
+  <%= @bairro.the_geom %>
+</p>
+
+
+<%= link_to 'Edit', edit_bairro_path(@bairro) %> |
+<%= link_to 'Back', bairros_path %>

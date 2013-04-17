@@ -1,6 +1,15 @@
 Geo::Application.routes.draw do
 
 
+  resources :zoneamentos
+
+
+  resources :bairros
+
+
+  resources :ruas
+
+
   get "mapas/index"
   match 'mapas/show/:insc_base' => 'mapas#show'
   #match 'mapas/geolotes/:insc_base' => 'mapas#geolotes', :as => :mapas_geolotes

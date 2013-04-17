@@ -64,6 +64,26 @@
 
   </tbody>
 </table>
+
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>Zoneamento</th>
+    <th>Atividade</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @zoneamentos.each do |zona| %>
+      <tr>
+        <td><%= zona.sigla %></td>
+        <td><%= zona.atividade %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
 <%= link_to 'Voltar', :back, :class => 'btn btn-primary' %>
 <%= link_to 'Gerar PDF', mapas_detail_path(@fazenda.id, :format => "pdf"), :target => "_blank",:class => 'btn btn-primary' %>
 </div>

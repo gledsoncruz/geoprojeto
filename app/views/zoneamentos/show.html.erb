@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sigla:</b>
+  <%= @zoneamento.sigla %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @zoneamento.desc %>
+</p>
+
+<p>
+  <b>Atividade:</b>
+  <%= @zoneamento.atividade %>
+</p>
+
+
+<%= link_to 'Edit', edit_zoneamento_path(@zoneamento) %> |
+<%= link_to 'Back', zoneamentos_path %>

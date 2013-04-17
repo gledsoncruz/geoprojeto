@@ -1,10 +1,12 @@
 class InscDetailPdf < Prawn::Document
 
-	def initialize(fazenda)
+	def initialize(fazenda, zoneamento)
 		super(:top_margin => 40)
 		@fazenda = fazenda
+		@zoneamentos = zoneamento
 		title
-		line_items
+		line_items_fazenda
+		line_items_zoneamento
 	end
 
 	def title
@@ -14,16 +16,16 @@ class InscDetailPdf < Prawn::Document
 		text "#{@fazenda.proprietario}", :size => 16, :style => :bold
 	end
 
-	def line_items
+	def line_items_fazenda
 		move_down 10
-		table line_item_rows do
+		table line_item_rows_fazenda do
 			column(0).width = 150
 			column(0).style(:font_style => :bold)
 			column(1).width = 350
 		end
 	end
 
-	def line_item_rows
+	def line_item_rows_fazenda
 		[["Inscrição",@fazenda.inscricao],
 		["Responsável",@fazenda.responsavel],
 		["Padrão",@fazenda.padrao],
@@ -36,6 +38,24 @@ class InscDetailPdf < Prawn::Document
 		["CEP",@fazenda.cep],
 		["Área do Lote",@fazenda.areadolote],
 		["Área construída",@fazenda.areaconstruida]]
+	end
+
+	def line_items_zoneamento
+		move_down 10
+		table line_items_rows_zoneamento do
+			row(0).font_style = :bold
+			column(0).width = 150
+			column(1).width = 350
+		end
+	end
+
+	def line_items_rows_zoneamento
+		[["Zoneamento", "Atividade"]] +
+		@zoneamentos.map do |item|
+			[item.sigla, item.atividade]
+		end
+
+
 	end
 
 

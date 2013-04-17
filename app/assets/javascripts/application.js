@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require mapa/masked_input
 //= require_directory .

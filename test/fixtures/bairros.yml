@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  popmasc: 1
+  popfem: 1
+  the_geom: 
+
+two:
+  nome: MyString
+  popmasc: 1
+  popfem: 1
+  the_geom: 

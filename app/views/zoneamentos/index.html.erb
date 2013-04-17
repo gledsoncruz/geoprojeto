@@ -1,0 +1,27 @@
+<h1>Listing zoneamentos</h1>
+
+<table>
+  <tr>
+    <th>Sigla</th>
+    <th>Desc</th>
+    <th>Atividade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @zoneamentos.each do |zoneamento| %>
+  <tr>
+    <td><%= zoneamento.sigla %></td>
+    <td><%= zoneamento.desc %></td>
+    <td><%= zoneamento.atividade %></td>
+    <td><%= link_to 'Show', zoneamento %></td>
+    <td><%= link_to 'Edit', edit_zoneamento_path(zoneamento) %></td>
+    <td><%= link_to 'Destroy', zoneamento, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Zoneamento', new_zoneamento_path %>

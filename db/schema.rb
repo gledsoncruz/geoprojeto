@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405132644) do
+ActiveRecord::Schema.define(:version => 20130417141758) do
+
+  create_table "bairros", :force => true do |t|
+    t.string  "nome",     :limit => 100
+    t.integer "popmasc"
+    t.integer "popfem"
+    t.spatial "the_geom", :limit => {:type=>"geometry", :srid=>29193}
+  end
 
   create_table "fazendas", :force => true do |t|
     t.integer  "insc_base"
@@ -55,7 +62,13 @@ ActiveRecord::Schema.define(:version => 20130405132644) do
 
   create_table "lotesvrs", :force => true do |t|
     t.integer "insc_base"
-    t.spatial "the_geom",  :limit => {:type=>"geometry", :srid=>29193}
+    t.spatial "the_geom",  :limit => {:type=>"multi_polygon", :srid=>29193}
+  end
+
+  create_table "ruas", :force => true do |t|
+    t.integer "id_rua"
+    t.string  "nome",     :limit => 100
+    t.spatial "the_geom", :limit => {:type=>"multi_line_string", :srid=>29193}
   end
 
   create_table "users", :force => true do |t|
@@ -79,5 +92,12 @@ ActiveRecord::Schema.define(:version => 20130405132644) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "zoneamentos", :force => true do |t|
+    t.string  "sigla",     :limit => 10
+    t.string  "desc",      :limit => 100
+    t.string  "atividade", :limit => 100
+    t.spatial "the_geom",  :limit => {:type=>"geometry", :srid=>29193}
+  end
 
 end
