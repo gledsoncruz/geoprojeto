@@ -11,6 +11,7 @@ class Ability
       can [:read, :update], User, :id => user.id
       can :read, Fazenda
       can :read, Rua
+      can :read, Zoneamento
     end
 
     # Define abilities for the passed in user here. For example:

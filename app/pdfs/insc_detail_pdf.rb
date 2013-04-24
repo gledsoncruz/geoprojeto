@@ -10,7 +10,6 @@ class InscDetailPdf < Prawn::Document
 	end
 
 	def title
-		#logopath = "#{RAILS_ROOT}/public/images/awesomecompany.jpg"
 		text "Sistema de Consultas Georeferenciadas", :size => 20, :style => :bold
 		move_down 30
 		text "#{@fazenda.proprietario}", :size => 16, :style => :bold

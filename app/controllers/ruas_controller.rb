@@ -4,10 +4,20 @@ class RuasController < ApplicationController
   load_and_authorize_resource
   def index
 
-    @ruas = Rua.accessible_by(current_ability).search(params[:search]).paginate(:conditions => "nome is not null" ,:page => params[:page], :per_page => 10).order('nome')
-    # @ruas = Rua.accessible_by(current_ability).search(params[:search]).paginate_by_sql("SELECT r.id_rua, r.nome, r.the_geom
-    #         from ruas r, bairros b where r.id_rua = 1580 and r.the_geom && b.the_geom and
-    #         st_intersects(r.the_geom, b.the_geom)", :page => params[:page], :per_page => 10)
+    nome = params[:search]
+
+    if nome.present?
+      @ruas = Rua.accessible_by(current_ability).search(nome)
+      @bairros = Bairro.find_by_sql("SELECT b.nome
+                        from ruas r, bairros b
+                        where r.nome like '"+nome+"' and
+                        r.the_geom && b.the_geom and
+                        st_intersects(r.the_geom, b.the_geom)")
+
+    else
+      @ruas.clear
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb
