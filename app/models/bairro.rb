@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
 class Bairro < ActiveRecord::Base
-  attr_accessible :nome, :popfem, :popmasc, :the_geom
+	self.table_name = "bairros_oficial"
+	self.primary_key = 'gid'
 end

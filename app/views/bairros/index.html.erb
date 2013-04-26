@@ -5,7 +5,6 @@
     <th>Nome</th>
     <th>Popmasc</th>
     <th>Popfem</th>
-    <th>The geom</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +12,9 @@
 
 <% @bairros.each do |bairro| %>
   <tr>
-    <td><%= bairro.nome %></td>
-    <td><%= bairro.popmasc %></td>
-    <td><%= bairro.popfem %></td>
-    <td><%= bairro.the_geom %></td>
+    <td><%= bairro.bairro %></td>
+    <td><%= bairro.pop_masc %></td>
+    <td><%= bairro.pop_fem %></td>
     <td><%= link_to 'Show', bairro %></td>
     <td><%= link_to 'Edit', edit_bairro_path(bairro) %></td>
     <td><%= link_to 'Destroy', bairro, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

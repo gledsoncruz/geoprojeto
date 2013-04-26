@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MapasController < ApplicationController
   def index
   end
@@ -13,7 +14,7 @@ class MapasController < ApplicationController
 
   def detail
   	@fazenda = Fazenda.accessible_by(current_ability).find(params[:id])
-    @zoneamentos = Zoneamento.find_by_sql("SELECT distinct on (sigla) sigla, atividade from zoneamentos, lotesvrs where lotesvrs.insc_base = "+@fazenda.insc_base.to_s+" and lotesvrs.the_geom && zoneamentos.the_geom and st_intersects(lotesvrs.the_geom, zoneamentos.the_geom)")
+    @zoneamentos = Zoneamento.find_by_sql("SELECT distinct on (zona) zona, tipo_ativi from zonas, lotesvr where lotesvr.cadastro = "+@fazenda.insc_base.to_s+" and lotesvr.the_geom && zonas.the_geom and st_intersects(lotesvr.the_geom, zonas.the_geom)")
   	respond_to do |format|
       format.html
       format.xml { render :xml => [@fazenda, @zoneamentos] }

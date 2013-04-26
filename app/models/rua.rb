@@ -1,8 +1,10 @@
+# -*- encoding : utf-8 -*-
 class Rua < ActiveRecord::Base
-  attr_accessible :id_rua, :nome, :the_geom
+  #attr_accessible :id_rua, :nome, :the_geom
 
-  self.rgeo_factory_generator = RGeo::Geos.factory_generator(:srid => 29193)
-
+  #self.rgeo_factory_generator = RGeo::Geos.factory_generator(:srid => 29193)
+  self.table_name = "eixo_rua"
+  self.primary_key = 'gid'
 
 	def self.search(search)
 

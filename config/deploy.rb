@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "bundler/capistrano"
 
 server "10.1.0.73:22222", :web, :app, :db, :primary => true

@@ -37,7 +37,9 @@ gem 'therubyracer'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails'
 gem 'prawn'
-
+gem 'thin'
+gem 'activerecord-oracle_enhanced-adapter'
+gem 'ruby-oci8', '~> 2.1.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

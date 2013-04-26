@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RuasController < ApplicationController
   # GET /ruas
   # GET /ruas.json
@@ -8,8 +9,8 @@ class RuasController < ApplicationController
 
     if nome.present?
       @ruas = Rua.accessible_by(current_ability).search(nome)
-      @bairros = Bairro.find_by_sql("SELECT b.nome
-                        from ruas r, bairros b
+      @bairros = Bairro.find_by_sql("SELECT b.bairro
+                        from eixo_rua r, bairros_oficial b
                         where r.nome like '"+nome+"' and
                         r.the_geom && b.the_geom and
                         st_intersects(r.the_geom, b.the_geom)")

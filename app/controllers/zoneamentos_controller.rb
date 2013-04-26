@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ZoneamentosController < ApplicationController
   # GET /zoneamentos
   # GET /zoneamentos.json

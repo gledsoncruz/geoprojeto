@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Geo::Application.routes.draw do
 
 

@@ -1,19 +1,27 @@
+oracle_development:
+  adapter: oracle_enhanced
+  host: 192.168.1.173
+  port: 1521
+  database: dbgeo
+  username: geo
+  password: geo
+
 development:
   adapter: postgis
   encoding: UTF8
-  database: georails_dev
+  database: dbgeo
   pool: 5
   username: geo
   password: geo
-  schema_search_path: "public,postgis"
+  #schema_search_path: "public,postgis"
   script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
 
-test:
-  adapter: postgis
-  encoding: UTF8
-  database: georails_test
-  pool: 5
-  username: geo
-  password: geo
-  schema_search_path: "public,postgis"
-  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
+# test:
+#   adapter: postgis
+#   encoding: UTF8
+#   database: georails_test
+#   pool: 5
+#   username: geo
+#   password: geo
+#   schema_search_path: "public,postgis"
+#   script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
