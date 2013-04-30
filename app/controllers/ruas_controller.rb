@@ -8,13 +8,11 @@ class RuasController < ApplicationController
     nome = params[:search]
 
     if nome.present?
-      @ruas = Rua.accessible_by(current_ability).search(nome)
-      @bairros = Bairro.find_by_sql("SELECT b.bairro
-                        from eixo_rua r, bairros_oficial b
-                        where r.nome like '"+nome+"' and
+      @ruas = Rua.paginate_by_sql("SELECT b.gid as id_bairro, b.bairro, r.*
+                        from ruas r, bairros_oficial b
+                        where r.nome like '%"+nome.upcase+"%' and
                         r.the_geom && b.the_geom and
-                        st_intersects(r.the_geom, b.the_geom)")
-
+                        st_intersects(r.the_geom, b.the_geom)", :page => params[:page], :per_page => 10)
     else
       @ruas.clear
     end
@@ -27,14 +25,30 @@ class RuasController < ApplicationController
     end
   end
 
+  def detail
+    @rua = Rua.find_by_sql("SELECT b.gid as id_bairro, b.bairro, r.*
+                        from ruas r, bairros_oficial b
+                        where r.id = "+params[:id]+" and
+                        b.gid = "+params[:id_bairro]+" and
+                        r.the_geom && b.the_geom and
+                        st_intersects(r.the_geom, b.the_geom)")
+  end
+
+
+
+
   # GET /ruas/1
   # GET /ruas/1.json
   def show
-    @rua = Rua.find(params[:id])
+    #@@rua = Rua.find(params[:id])
 
-    # @ruas = Rua.accessible_by(current_ability).search(params[:search]).paginate_by_sql(["SELECT r.id_rua, r.nome, r.the_geom
-    #         from ruas r, bairros b where r.id = ? and r.the_geom && b.the_geom and
-    #         st_intersects(r.the_geom, b.the_geom)", :params[:id]], :page => params[:page], :per_page => 10)
+    @rua = Rua.find_by_sql("SELECT b.gid as id_bairro, b.bairro, r.*, st_length(r.the_geom) as tamanho,
+                        st_length(st_intersection(r.the_geom, b.the_geom))  as parcial
+                        from ruas r, bairros_oficial b
+                        where r.id = "+params[:id]+" and
+                        b.gid = "+params[:id_bairro]+" and
+                        r.the_geom && b.the_geom and
+                        st_intersects(r.the_geom, b.the_geom)")
 
     respond_to do |format|
       format.html # show.html.erb

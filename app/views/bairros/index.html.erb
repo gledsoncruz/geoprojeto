@@ -1,27 +1,14 @@
-<h1>Listing bairros</h1>
+<h3>Lista de Bairros</h3>
 
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Popmasc</th>
-    <th>Popfem</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @bairros.each do |bairro| %>
-  <tr>
-    <td><%= bairro.bairro %></td>
-    <td><%= bairro.pop_masc %></td>
-    <td><%= bairro.pop_fem %></td>
-    <td><%= link_to 'Show', bairro %></td>
-    <td><%= link_to 'Edit', edit_bairro_path(bairro) %></td>
-    <td><%= link_to 'Destroy', bairro, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
+<% if can? :read, Bairro %>
+<%= form_tag bairros_path, :method => 'get', :class => 'form-search', :id => 'bairros_search' do %>
+  <%= text_field_tag :search, params[:search], :class => 'input-medium search-query' %>
+    <%= submit_tag "Consultar", :bairro => nil, :class => 'btn btn-primary' %>
 <% end %>
-</table>
+<% end %>
+
+<div id="bairros">
+  <%= render 'bairros' %>
+</div>
 
 <br />
-
-<%= link_to 'New Bairro', new_bairro_path %>

@@ -2,23 +2,33 @@
 class BairrosController < ApplicationController
   # GET /bairros
   # GET /bairros.json
+
+  load_and_authorize_resource
+
   def index
-    @bairros = Bairro.all
+    @bairros = Bairro.accessible_by(current_ability).search(params[:search]).paginate_by_sql(
+      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b order by b.bairro", :page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @bairros }
+      format.xml { render :xml => @bairros }
     end
   end
 
   # GET /bairros/1
   # GET /bairros/1.json
   def show
-    @bairro = Bairro.find(params[:id])
+
+    @bairro = Bairro.find_by_sql(
+      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where gid ="+params[:id]+" order by b.bairro")
+
+    #@bairro = Bairro.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @bairro }
+      format.xml { render :xml => @bairro }
     end
   end
 

@@ -4,23 +4,23 @@
   <tr>
     <th>Id</th>
     <th>Nome</th>
-
+    <th>Bairro</th>
     <th colspan=3 style="text-align: center;">Ações</th>
   </tr>
   </thead>
   <tbody>
     <% if @ruas.empty? %>
       <tr>
-        <td colspan=3>Não exitem registros com o valor informado</td>
+        <td colspan=4>Não exitem registros com o valor informado</td>
       </tr>
-
     <% end %>
     <% @ruas.each do |rua| %>
       <tr>
         <td><%= rua.id %></td>
         <td><%= rua.nome %></td>
+        <td><%= rua.bairro %></td>
 
-        <td style="text-align: center;"><%= link_to '', rua, :class => 'icon-search', :title => 'Visualizar' %></td>
+        <td style="text-align: center;"><%= link_to '', ruas_show_path(rua.id, rua.id_bairro), :class => 'icon-search', :title => 'Visualizar' %></td>
         <% if can? :update, rua %>
           <td style="text-align: center;"><%= link_to '', edit_rua_path(rua), :class => 'icon-pencil', :title => 'Editar' %></td>
             <% if can? :delete, Rua %>
@@ -31,3 +31,6 @@
     <% end %>
   </tbody>
 </table>
+<% unless @ruas.empty? %>
+<%= will_paginate @ruas, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>
+<% end %>

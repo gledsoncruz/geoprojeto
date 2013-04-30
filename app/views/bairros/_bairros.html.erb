@@ -1,0 +1,33 @@
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Pop. Masc (Censo IBGE/2000)</th>
+    <th>Pop. Fem (Censo IBGE/2000)</th>
+    <th>Pop. Total</th>
+    <th>Área</th>
+    <th colspan=3 style="text-align: center;">Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @bairros.each do |bairro| %>
+      <tr>
+        <td><%= bairro.bairro %></td>
+        <td><%= bairro.pop_masc %></td>
+        <td><%= bairro.pop_fem %></td>
+        <td><%= bairro.pop_fem.to_i + bairro.pop_masc.to_i %></td>
+        <td><%= bairro.area.to_f.round(2) %> Km2</td>
+        <td style="text-align: center;"><%= link_to '', bairro, :class => 'icon-search', :title => 'Visualizar' %></td>
+        <% if can? :update, bairro %>
+          <td style="text-align: center;"><%= link_to '', edit_bairro_path(bairro), :class => 'icon-pencil', :title => 'Editar' %></td>
+            <% if can? :delete, bairro %>
+            <td style="text-align: center;"><%= link_to '', bairro, :class => 'icon-trash', :method => :delete, :data => { :confirm => 'Are you sure?' }, :title => 'Apagar' %></td>
+            <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= will_paginate @bairros, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>

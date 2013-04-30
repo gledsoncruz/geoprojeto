@@ -1,20 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Id rua:</b>
-  <%= @rua.id_rua %>
-</p>
-
-<p>
-  <b>Nome:</b>
-  <%= @rua.nome %>
-</p>
-
-<p>
-  <b>The geom:</b>
-  <%= @rua.the_geom %>
-</p>
-
-
-<%= link_to 'Edit', edit_rua_path(@rua) %> |
-<%= link_to 'Back', ruas_path %>
+<h4>Informações:</h4>
+<table class="table table-bordered table-hover table-condensed">
+  <tbody>
+      <tr>
+        <td><b>Logradouro:</b></td>
+        <td><%= @rua[0].nome %></td>
+      </tr>
+      <tr>
+        <td><b>Bairro:</b></td>
+        <td><%= @rua[0].bairro %></td>
+      </tr>
+      <tr>
+        <td><b>Extensão no Bairro:</b></td>
+        <td><%= @rua[0].parcial.to_f.round(2) %> metros</td>
+      </tr>
+       <tr>
+        <td><b>Extensão Total:</b></td>
+        <td><%= @rua[0].tamanho.to_f.round(2) %> metros</td>
+      </tr>
+  </tbody>
+</table>

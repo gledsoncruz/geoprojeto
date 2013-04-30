@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Nome:</b>
-  <%= @bairro.nome %>
-</p>
-
-<p>
-  <b>Popmasc:</b>
-  <%= @bairro.popmasc %>
-</p>
-
-<p>
-  <b>Popfem:</b>
-  <%= @bairro.popfem %>
-</p>
-
-<p>
-  <b>The geom:</b>
-  <%= @bairro.the_geom %>
-</p>
-
-
-<%= link_to 'Edit', edit_bairro_path(@bairro) %> |
-<%= link_to 'Back', bairros_path %>
+<h4>Informações:</h4>
+<table class="table table-bordered table-hover table-condensed">
+	<col width="30%">
+  <tbody>
+      <tr>
+        <td><b>Nome:</b></td>
+        <td><%= @bairro[0].bairro %></td>
+      </tr>
+      <tr>
+        <td><b>Pop. Masc (Censo IBGE/2000):</b></td>
+        <td><%= @bairro[0].pop_masc %></td>
+      </tr>
+      <tr>
+        <td><b>Pop. Fem (Censo IBGE/2000):</b></td>
+        <td><%= @bairro[0].pop_fem %></td>
+      </tr>
+       <tr>
+        <td><b>Pop. Total:</b></td>
+        <td><%= @bairro[0].pop_fem.to_i + @bairro[0].pop_masc.to_i %></td>
+      </tr>
+      <tr>
+        <td><b>Área:</b></td>
+        <td><%= @bairro[0].area.to_f.round(2) %> Km2</td>
+      </tr>
+  </tbody>
+</table>

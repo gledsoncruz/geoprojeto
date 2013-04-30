@@ -3,13 +3,10 @@ Geo::Application.routes.draw do
 
 
   resources :zoneamentos
-
-
   resources :bairros
+  resources :ruas, :skip => :show
 
-
-  resources :ruas
-
+  match 'ruas/show/:id/:id_bairro' => 'ruas#show', :as => :ruas_show
 
   get "mapas/index"
   match 'mapas/show/:insc_base' => 'mapas#show'

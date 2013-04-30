@@ -52,7 +52,7 @@ class InscDetailPdf < Prawn::Document
 	def line_items_rows_zoneamento
 		[["Zoneamento", "Atividade"]] +
 		@zoneamentos.map do |item|
-			[item.sigla, item.atividade]
+			[item.zona, item.tipo_ativi]
 		end
 
 

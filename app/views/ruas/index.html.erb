@@ -1,6 +1,6 @@
-<h3>Lista de Ruas</h3>
+<h3>Lista de Logradouros</h3>
 
-<% if can? :update, Rua %>
+<% if can? :read, Rua %>
 <%= form_tag ruas_path, :method => 'get', :class => 'form-search', :id => 'ruas_search' do %>
   <%= text_field_tag :search, params[:search], :class => 'input-medium search-query', :placeholder => 'Logradouro' %>
     <%= submit_tag "Consultar", :nome => nil, :class => 'btn btn-primary' %>

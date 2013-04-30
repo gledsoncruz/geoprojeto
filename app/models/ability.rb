@@ -13,6 +13,7 @@ class Ability
       can :read, Fazenda
       can :read, Rua
       can :read, Zoneamento
+      can :read, Bairro
     end
 
     # Define abilities for the passed in user here. For example:
