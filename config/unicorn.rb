@@ -7,4 +7,4 @@ stdout_path "#{root}/log/unicorn.log"
 
 listen "/tmp/unicorn.geoprojeto.sock"
 worker_processes 2
-timeout 300
+timeout 30
