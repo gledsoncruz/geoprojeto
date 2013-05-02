@@ -1,9 +1,7 @@
-# -*- encoding : utf-8 -*-
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'active_record/connection_adapters/postgis_adapter/railtie'
-require 'active_record/connection_adapters/oracle_enhanced_adapter'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
