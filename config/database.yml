@@ -11,7 +11,7 @@ development:
   # host: 10.1.0.73
   # port: 5432
   encoding: UTF8
-  database: dbgeo
+  database: georails_dev
   pool: 5
   username: geo
   password: geo
