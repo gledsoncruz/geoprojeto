@@ -22,6 +22,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+platforms :ruby do
+  gem 'ruby-oci8', ">= 2.1.0"
+end
+
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'will_paginate-bootstrap'
@@ -39,7 +43,7 @@ gem 'twitter-bootstrap-rails'
 gem 'prawn'
 gem 'thin'
 gem 'activerecord-oracle_enhanced-adapter', :git => "git://github.com/rsim/oracle-enhanced.git"
-gem 'ruby-oci8', '~> 2.1.0'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
