@@ -10,7 +10,9 @@ development:
   adapter: postgis
   # host: 10.1.0.73
   # port: 5432
-  encoding: LATIN1
+  encoding: utf8
+  collate: en_US.UTF8
+  ctype: en_US.UTF8
   database: dbgeo
   pool: 5
   username: geo
@@ -22,7 +24,9 @@ production:
   adapter: postgis
   # host: 10.1.0.73
   # port: 5432
-  encoding: LATIN1
+  encoding: utf8
+  collate: en_US.UTF8
+  ctype: en_US.UTF8
   database: dbgeo
   pool: 5
   username: geo

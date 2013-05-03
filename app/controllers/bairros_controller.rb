@@ -6,8 +6,8 @@ class BairrosController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @bairros = Bairro.accessible_by(current_ability).search(params[:search]).paginate_by_sql(
-      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b order by b.bairro", :page => params[:page], :per_page => 10)
+    @bairros = Bairro.accessible_by(current_ability).paginate_by_sql(
+      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where b.bairro like '%"+params[:search].to_s.upcase+"%' order by b.bairro", :page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
