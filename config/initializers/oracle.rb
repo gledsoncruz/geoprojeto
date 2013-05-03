@@ -1,4 +1,4 @@
-require 'active_record/connection_adapters/oracle_enhanced_adapter'
+#require 'active_record/connection_adapters/oracle_enhanced_adapter'
 # it's recommended to set time zone to ensure that Oracle session time zone
 # will be the same as Ruby Time.local time zone
 #ENV['TZ'] = 'Europe/Riga'
