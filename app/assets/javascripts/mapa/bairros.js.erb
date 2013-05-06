@@ -1,0 +1,97 @@
+$(document).ready(function(){
+
+L.Icon.Default.imagePath = "/assets"
+console.log(L.Icon.Default.imagePath);
+
+var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png',
+    cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade';
+
+var nightTime = L.tileLayer(cloudmadeUrl, {
+        styleId:999
+    });
+
+var googleRoadMap = new L.Google('ROADMAP');
+var googleHybrid = new L.Google('SATELLITE');
+
+var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:limite_municipal',
+            format: 'image/png',
+            transparent: true
+        });
+
+var zoneamento = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:zonas',
+            format: 'image/png',
+            transparent: true
+        });
+
+var bairros_oficial = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
+            layers: 'nebulosa:bairros_oficial',
+            format: 'image/png',
+            transparent: true
+        });
+
+
+
+
+// create a map in the "map" div, set the view to a given place and zoom
+var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, googleHybrid]}).setView([-22.511447, -44.108906], 13);
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function style(feature) {
+    return {
+        fillColor: '#ffffff',
+        weight: 5,
+        opacity: 1,
+        color: '#FF1500',
+        // dashArray: '3'
+        //fillOpacity: 0
+    };
+}
+
+//var ruas = new L.GeoJSON(null, {style: style});
+
+var bairros = L.geoJson(null,{style: style, onEachFeature: function (feature, layer)
+    {
+      layer.bindLabel(feature.properties.bairro, {noHide:true});
+    }});
+//bairros.eachLayer(function(l) { l.showLabel();});
+
+
+
+
+function bairrosJson(data) {
+    bairros.addData(data);
+    map.fitBounds(bairros.getBounds());
+}
+
+
+  bairros.clearLayers();
+  $.ajax({
+    url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:bairros_oficial&srsName=EPSG:4326&outputFormat=json&cql_filter=(id="+$("#gid_bairro").val()+")&format_options=callback:getJson",
+    dataType : 'jsonp',
+    jsonpCallback: 'getJson',
+    success: bairrosJson
+  });
+  bairros.addTo(map);
+
+
+var baseMaps = {
+    "Google": googleRoadMap,
+    "Google Hibrido": googleHybrid,
+    "Noturno": nightTime
+
+};
+
+var overlayMaps = {
+    "Limite Municipal": limite,
+    "Zoneamento": zoneamento,
+    "Bairros": bairros_oficial
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+});
