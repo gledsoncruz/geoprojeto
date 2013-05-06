@@ -23,7 +23,7 @@ group :assets do
 end
 
 platforms :ruby do
-  gem 'ruby-oci8', ">= 2.1.0"
+  gem 'ruby-oci8', ">= 2.1.5"
 end
 
 gem 'jquery-rails'
