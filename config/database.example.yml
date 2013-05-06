@@ -20,27 +20,27 @@ development:
   #schema_search_path: "public,postgis"
   script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
 
-# production:
-#   adapter: postgis
-#   # host: 10.1.0.73
-#   # port: 5432
-#   encoding: utf8
-#   collate: en_US.UTF8
-#   ctype: en_US.UTF8
-#   database: dbgeo
-#   pool: 5
-#   username: geo
-#   password: geo
-#   #schema_search_path: "public,postgis"
-#   script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
+production:
+  adapter: postgis
+  # host: 10.1.0.73
+  # port: 5432
+  encoding: utf8
+  collate: en_US.UTF8
+  ctype: en_US.UTF8
+  database: dbgeo
+  pool: 5
+  username: geo
+  password: geo
+  #schema_search_path: "public,postgis"
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5
 
-# oracle_production:
-#   adapter: oracle_enhanced
-#   host: 192.168.1.173
-#   port: 1521
-#   database: dbgeo
-#   username: geo
-#   password: geo
+oracle_production:
+  adapter: oracle_enhanced
+  host: 192.168.1.173
+  port: 1521
+  database: dbgeo
+  username: geo
+  password: geo
 
 # test:
 #   adapter: postgis
