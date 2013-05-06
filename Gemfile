@@ -43,6 +43,7 @@ gem 'twitter-bootstrap-rails'
 gem 'prawn'
 gem 'thin'
 gem 'activerecord-oracle_enhanced-adapter', :git => "git://github.com/rsim/oracle-enhanced.git"
+gem 'ruby-plsql'
 
 
 # To use ActiveModel has_secure_password
