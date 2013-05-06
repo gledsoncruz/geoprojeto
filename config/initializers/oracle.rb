@@ -4,6 +4,7 @@
 #ENV['TZ'] = 'Europe/Riga'
 
 ActiveSupport.on_load(:active_record) do
+=begin
 
   ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter.class_eval do
     # some sample settings that I use in my projects
@@ -31,6 +32,7 @@ ActiveSupport.on_load(:active_record) do
     end
 
   end
+=end
 
   # PL/SQL connection
   #plsql.activerecord_class = ActiveRecord::Base
