@@ -2,8 +2,9 @@
   <thead>
   <tr>
     <th>Nome</th>
-    <th>Pop. Masc (Censo IBGE/2010)</th>
-    <th>Pop. Fem (Censo IBGE/2010)</th>
+    <th>Doc. Regularização</th>
+    <th>Pop. Masc (IBGE/2010)</th>
+    <th>Pop. Fem (IBGE/2010)</th>
     <th>Pop. Total</th>
     <th>Área</th>
     <th colspan=3 style="text-align: center;">Ações</th>
@@ -12,7 +13,8 @@
   <tbody>
     <% @bairros.each do |bairro| %>
       <tr>
-        <td><%= bairro.bairro %></td>
+        <td><%= bairro.nome %></td>
+        <td><%= bairro.doc_reg_nomen_bairro %></td>
         <td><%= bairro.pop_masc %></td>
         <td><%= bairro.pop_fem %></td>
         <td><%= bairro.pop_fem.to_i + bairro.pop_masc.to_i %></td>

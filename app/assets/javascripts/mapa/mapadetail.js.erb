@@ -1,10 +1,17 @@
 $(document).ready(function(){
 
-// html2canvas(document.getElementById('map'), {
-//   onrendered: function(canvas) {
-//     document.body.appendChild(canvas);
-//   }
-// });
+html2canvas(document.getElementById('map'),
+{
+    logging: false,
+    profile: false,
+    useCORS: true,
+  onrendered: function(canvas) {
+    //document.body.appendChild(canvas);
+    var myImage = canvas.toDataURL("image/png");
+    window.open(myImage);
+  }
+});
+
 
 L.Icon.Default.imagePath = "/assets"
 console.log(L.Icon.Default.imagePath);
@@ -20,7 +27,7 @@ var googleRoadMap = new L.Google('ROADMAP');
 var googleHybrid = new L.Google('SATELLITE');
 
 var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
-            layers: 'nebulosa:limite_municipal',
+            layers: 'nebulosa:limitevr_oficial',
             format: 'image/png',
             transparent: true
         });
@@ -39,6 +46,8 @@ var logradouros = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
 
 // create a map in the "map" div, set the view to a given place and zoom
 var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, logradouros, googleHybrid]}).setView([-22.511447, -44.108906], 13);
+
+//var hash = new L.Hash(map);
 
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());

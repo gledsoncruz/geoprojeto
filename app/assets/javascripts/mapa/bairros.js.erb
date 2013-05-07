@@ -14,7 +14,7 @@ var googleRoadMap = new L.Google('ROADMAP');
 var googleHybrid = new L.Google('SATELLITE');
 
 var limite = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
-            layers: 'nebulosa:limite_municipal',
+            layers: 'nebulosa:limitevr_oficial',
             format: 'image/png',
             transparent: true
         });
@@ -35,7 +35,7 @@ var bairros_oficial = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms
 
 
 // create a map in the "map" div, set the view to a given place and zoom
-var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, googleHybrid]}).setView([-22.511447, -44.108906], 13);
+var map = L.map('map', {maxZoom: 25, minZoom: 13,layers: [limite, bairros_oficial, googleHybrid]}).setView([-22.511447, -44.108906], 13);
 
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
@@ -56,7 +56,7 @@ function style(feature) {
 
 var bairros = L.geoJson(null,{style: style, onEachFeature: function (feature, layer)
     {
-      layer.bindLabel(feature.properties.bairro, {noHide:true});
+      layer.bindLabel(feature.properties.nome, {noHide:true});
     }});
 //bairros.eachLayer(function(l) { l.showLabel();});
 
@@ -71,7 +71,7 @@ function bairrosJson(data) {
 
   bairros.clearLayers();
   $.ajax({
-    url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:bairros_oficial&srsName=EPSG:4326&outputFormat=json&cql_filter=(id="+$("#gid_bairro").val()+")&format_options=callback:getJson",
+    url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:bairros_oficial&srsName=EPSG:4326&outputFormat=json&cql_filter=(id_bairro="+$("#id_bairro").val()+")&format_options=callback:getJson",
     dataType : 'jsonp',
     jsonpCallback: 'getJson',
     success: bairrosJson

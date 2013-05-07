@@ -1,4 +1,4 @@
-<input type="hidden" id="gid_bairro" value="<%= @bairro[0].gid %>" />
+<input type="hidden" id="id_bairro" value="<%= @bairro[0].id %>" />
 
 <h4>Informações:</h4>
 <table class="table table-bordered table-hover table-condensed">
@@ -6,7 +6,11 @@
   <tbody>
       <tr>
         <td><b>Nome:</b></td>
-        <td><%= @bairro[0].bairro %></td>
+        <td><%= @bairro[0].nome %></td>
+      </tr>
+       <tr>
+        <td><b>Doc. Regularização:</b></td>
+        <td><%= @bairro[0].doc_reg_nomen_bairro %></td>
       </tr>
       <tr>
         <td><b>Pop. Masc (Censo IBGE/2010):</b></td>

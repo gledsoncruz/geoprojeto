@@ -7,7 +7,7 @@ class BairrosController < ApplicationController
 
   def index
     @bairros = Bairro.accessible_by(current_ability).paginate_by_sql(
-      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where b.bairro like '%"+params[:search].to_s.upcase+"%' order by b.bairro", :page => params[:page], :per_page => 10)
+      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where b.nome like '%"+params[:search].to_s.upcase+"%' order by b.nome", :page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +21,7 @@ class BairrosController < ApplicationController
   def show
 
     @bairro = Bairro.find_by_sql(
-      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where gid ="+params[:id]+" order by b.bairro")
+      "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where id ="+params[:id]+" order by b.nome")
 
     #@bairro = Bairro.find(params[:id])
 
