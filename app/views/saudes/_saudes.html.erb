@@ -1,7 +1,7 @@
 <div id="saude">
   <table class="table table-bordered table-hover table-condensed">
     <col width="5%">
-    <col width="15%">
+    <col width="35%">
   <thead>
   <tr>
     <th>Id</th>
@@ -20,10 +20,10 @@
     <% @saudes.each do |s| %>
       <tr>
         <td><%= s.id %></td>
-        <td><%= e.descricao %></td>
-        <td><%= e.tel_ramal %></td>
-        <td><%= e.tipo %></td>
-        <td><%= e.responsave %></td>
+        <td><%= s.descricao %></td>
+        <td><%= s.tel_ramal %></td>
+        <td><%= s.tipo %></td>
+        <td><%= s.responsave %></td>
       </tr>
     <% end %>
   </tbody>
