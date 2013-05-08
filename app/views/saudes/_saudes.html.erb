@@ -1,0 +1,34 @@
+<div id="saude">
+  <table class="table table-bordered table-hover table-condensed">
+    <col width="5%">
+    <col width="15%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Descricao</th>
+    <th>Tel/Ramal</th>
+    <th>Tipo</th>
+    <th>Responsavel</th>
+  </tr>
+  </thead>
+  <tbody>
+  	<% if @saudes.empty? %>
+      <tr>
+        <td colspan=5>Não exitem registros com o valor informado</td>
+      </tr>
+    <% end %>
+    <% @saudes.each do |s| %>
+      <tr>
+        <td><%= s.id %></td>
+        <td><%= e.descricao %></td>
+        <td><%= e.tel_ramal %></td>
+        <td><%= e.tipo %></td>
+        <td><%= e.responsave %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% unless @saudes.empty? %>
+<%= will_paginate @saudes, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>
+<% end %>
+</div>

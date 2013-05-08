@@ -22,13 +22,28 @@ class BairrosController < ApplicationController
 
     @bairro = Bairro.find_by_sql(
       "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where id ="+params[:id]+" order by b.nome")
+    @ruas = Rua.paginate_by_sql("select r.* from ruas r, bairros_oficial b
+              where r.the_geom && b.the_geom and
+              st_intersects(r.the_geom, b.the_geom) and
+              not id_rua = 0 and
+              b.id = "+params[:id]+" order by r.nome", :page => params[:page], :per_page => 10)
+
+    @educacaos = Educacao.paginate_by_sql("select e.* from educacao_municipal e, bairros_oficial b
+                  where e.the_geom && b.the_geom and
+                  st_intersects(e.the_geom, b.the_geom) and
+                  b.id = "+params[:id]+" order by e.nome", :page => params[:page], :per_page => 10)
+
+    @saudes = Saude.paginate_by_sql("select e.* from saude_municipal e, bairros_oficial b
+                  where e.the_geom && b.the_geom and
+                  st_intersects(e.the_geom, b.the_geom) and
+                  b.id = "+params[:id]+" order by e.descricao", :page => params[:page], :per_page => 10)
 
     #@bairro = Bairro.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @bairro }
-      format.xml { render :xml => @bairro }
+      format.json { render :json => [@bairro, @ruas, @educacaos, @saudes] }
+      format.xml { render :xml => [@bairro, @ruas, @educacaos, @saudes] }
     end
   end
 

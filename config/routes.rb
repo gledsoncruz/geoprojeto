@@ -2,6 +2,20 @@
 Geo::Application.routes.draw do
 
 
+  get "saudes/index"
+
+  get "saudes/show"
+
+  get "saudes/edit"
+
+  get "saudes/_saudes"
+
+  get "educacao/index"
+
+  get "educacao/show"
+
+  get "educacao/edit"
+
   resources :zoneamentos
   resources :bairros
   resources :ruas, :skip => :show

@@ -7,6 +7,7 @@
       <tr>
         <td><b>Nome:</b></td>
         <td><%= @bairro[0].nome %></td>
+        <td rowspan="6" style="width:40%"><div id="map" style="height: 200px"></div></td>
       </tr>
        <tr>
         <td><b>Doc. Regularização:</b></td>
@@ -28,9 +29,45 @@
         <td><b>Área:</b></td>
         <td><%= @bairro[0].area.to_f.round(2) %> Km2</td>
       </tr>
+
   </tbody>
 </table>
+<h4>Educação Municipal no Bairro (Total: <%= @educacaos.total_entries %> )</h4>
+<%= render "educacao/educacao" %>
 
-<div id="map"style="height: 400px;"></div>
+<h4>Saude Municipal no Bairro (Total: <%= @saudes.total_entries %> )</h4>
+<%= render "saudes/saudes" %>
+
+<h4>Logradouros que cortam o bairro: (Total: <%= @ruas.total_entries %> )</h4>
+<div id="ruas">
+  <table class="table table-bordered table-hover table-condensed">
+    <col width="5%">
+    <col width="15%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Tipo</th>
+    <th>Nome</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% if @ruas.empty? %>
+      <tr>
+        <td colspan=4>Não exitem registros com o valor informado</td>
+      </tr>
+    <% end %>
+    <% @ruas.each do |rua| %>
+      <tr>
+        <td><%= rua.id %></td>
+        <td><%= rua.tipo_rua %></td>
+        <td><%= rua.nome %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% unless @ruas.empty? %>
+<%= will_paginate @ruas, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>
+<% end %>
+</div>
 <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
 <%= javascript_include_tag "application", "mapa/bairros" %>
