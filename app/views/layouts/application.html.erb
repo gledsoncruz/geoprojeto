@@ -20,7 +20,8 @@
 
             <div class="span2">
               <% if user_signed_in? %>
-              <h4>Menu</h4>
+              <div class="nav-fixed">
+                <h4>Menu</h4>
                  <ul class="nav nav-tabs nav-stacked">
                     <li><%= link_to "Principal", root_url %></li>
                     <li><%= link_to "Consulta Inscrição", mapas_index_path %></li>
@@ -38,6 +39,7 @@
                           </ul>
                   <% end %>
               <% end %>
+              </div>
             </div>
 
             <!-- COLUNA OCUPANDO 10 ESPAÇOS NO GRID -->

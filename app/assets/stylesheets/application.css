@@ -14,6 +14,17 @@
  *= require leaflet.draw
  */
 
+body{
+  padding-top: 80px;
+}
+
+.nav-fixed {
+    position:fixed;
+}
+
+.row-fluid > .span-fixed-sidebar {
+    margin-left: 290px;
+}
 
 #map { height: 180px; }
 

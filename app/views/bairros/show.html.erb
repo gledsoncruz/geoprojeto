@@ -32,10 +32,10 @@
 
   </tbody>
 </table>
-<h4>Educação Municipal no Bairro (Total: <%= @educacaos.total_entries %> )</h4>
+<h4>Educação Municipal no Bairro (Total: <%= @educacaos.size %> )</h4>
 <%= render "educacao/educacao" %>
 
-<h4>Saude Municipal no Bairro (Total: <%= @saudes.total_entries %> )</h4>
+<h4>Saude Municipal no Bairro (Total: <%= @saudes.size %> )</h4>
 <%= render "saudes/saudes" %>
 
 <h4>Logradouros que cortam o bairro: (Total: <%= @ruas.total_entries %> )</h4>
@@ -48,6 +48,8 @@
     <th>Id</th>
     <th>Tipo</th>
     <th>Nome</th>
+    <th>Comprimento no bairro</th>
+    <th>Comprimento total</th>
   </tr>
   </thead>
   <tbody>
@@ -61,6 +63,8 @@
         <td><%= rua.id %></td>
         <td><%= rua.tipo_rua %></td>
         <td><%= rua.nome %></td>
+        <td><%= rua.parcial.to_f.round(2) %> metros</td>
+        <td><%= rua.total.to_f.round(2) %> metros</td>
       </tr>
     <% end %>
   </tbody>
