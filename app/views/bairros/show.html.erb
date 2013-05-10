@@ -1,80 +1,78 @@
+<h4>Informações:</h4>
+<div>
+<%= render "bairros/detail" %>
+</div>
+
+<h4>Estatísticas no Bairro:</h4>
+<div class="accordion" id="accordion2">
 <input type="hidden" id="id_bairro" value="<%= @bairro[0].id %>" />
 
-<h4>Informações:</h4>
-<table class="table table-bordered table-hover table-condensed">
-	<col width="30%">
-  <tbody>
-      <tr>
-        <td><b>Nome:</b></td>
-        <td><%= @bairro[0].nome %></td>
-        <td rowspan="6" style="width:40%"><div id="map" style="height: 200px"></div></td>
-      </tr>
-       <tr>
-        <td><b>Doc. Regularização:</b></td>
-        <td><%= @bairro[0].doc_reg_nomen_bairro %></td>
-      </tr>
-      <tr>
-        <td><b>Pop. Masc (Censo IBGE/2010):</b></td>
-        <td><%= @bairro[0].pop_masc %></td>
-      </tr>
-      <tr>
-        <td><b>Pop. Fem (Censo IBGE/2010):</b></td>
-        <td><%= @bairro[0].pop_fem %></td>
-      </tr>
-       <tr>
-        <td><b>Pop. Total:</b></td>
-        <td><%= @bairro[0].pop_fem.to_i + @bairro[0].pop_masc.to_i %></td>
-      </tr>
-      <tr>
-        <td><b>Área:</b></td>
-        <td><%= @bairro[0].area.to_f.round(2) %> Km2</td>
-      </tr>
 
-  </tbody>
-</table>
-<h4>Educação Municipal no Bairro (Total: <%= @educacaos.size %> )</h4>
-<%= render "educacao/educacao" %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Logradouros (Total: <%= @ruas.size %> )
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render "ruas/ruasBairro" %>
+      </div>
+    </div>
+  </div>
 
-<h4>Saude Municipal no Bairro (Total: <%= @saudes.size %> )</h4>
-<%= render "saudes/saudes" %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        Saude  (Total: <%= @saudes.size %> )
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render "saudes/saudes" %>
 
-<h4>Pontos de Ônibus (Total: <%= @pontosOnibus.size %> )</h4>
-<%= render "pontos_onibus/onibus" %>
+      </div>
+    </div>
+  </div>
 
-<h4>Logradouros que cortam o bairro: (Total: <%= @ruas.total_entries %> )</h4>
-<div id="ruas">
-  <table class="table table-bordered table-hover table-condensed">
-    <col width="5%">
-    <col width="15%">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Tipo</th>
-    <th>Nome</th>
-    <th>Comprimento no bairro</th>
-    <th>Comprimento total</th>
-  </tr>
-  </thead>
-  <tbody>
-    <% if @ruas.empty? %>
-      <tr>
-        <td colspan=4>Não exitem registros com o valor informado</td>
-      </tr>
-    <% end %>
-    <% @ruas.each do |rua| %>
-      <tr>
-        <td><%= rua.id %></td>
-        <td><%= rua.tipo_rua %></td>
-        <td><%= rua.nome %></td>
-        <td><%= rua.parcial.to_f.round(2) %> metros</td>
-        <td><%= rua.total.to_f.round(2) %> metros</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% unless @ruas.empty? %>
-<%= will_paginate @ruas, :renderer => BootstrapPagination::Rails, :class => 'pagination pagination-centered' %>
-<% end %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+        Educação  (Total: <%= @educacaos.size %> )
+      </a>
+    </div>
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render "educacao/educacao" %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+        Pontos de Ônibus  (Total: <%= @pontosOnibus.size %> )
+      </a>
+    </div>
+    <div id="collapseFour" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render "pontos_onibus/onibus" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+        Antenas Aldeia Digital  (Total: <%= @antenas.size %> )
+      </a>
+    </div>
+    <div id="collapseFive" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render "aldeia_digital/antenas" %>
+      </div>
+    </div>
+  </div>
+
 </div>
-<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-<%= javascript_include_tag "application", "mapa/bairros" %>

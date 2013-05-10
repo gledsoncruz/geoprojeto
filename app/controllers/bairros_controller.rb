@@ -22,11 +22,11 @@ class BairrosController < ApplicationController
 
     @bairro = Bairro.find_by_sql(
       "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where id ="+params[:id]+" order by b.nome")
-    @ruas = Rua.paginate_by_sql("select r.*, st_length(st_intersection(r.the_geom, b.the_geom)) as parcial, st_length(r.the_geom) as total from ruas r, bairros_oficial b
+    @ruas = Rua.find_by_sql("select r.*, st_length(st_intersection(r.the_geom, b.the_geom)) as parcial, st_length(r.the_geom) as total from ruas r, bairros_oficial b
               where r.the_geom && b.the_geom and
               st_intersects(r.the_geom, b.the_geom) and
               not id_rua = 0 and
-              b.id = "+params[:id]+" order by r.nome", :page => params[:page], :per_page => 10)
+              b.id = "+params[:id]+" order by r.nome")
 
     @educacaos = Educacao.find_by_sql("select e.* from educacao_municipal e, bairros_oficial b
                   where e.the_geom && b.the_geom and
@@ -39,6 +39,10 @@ class BairrosController < ApplicationController
                   b.id = "+params[:id]+" order by e.descricao")
 
     @pontosOnibus = PontosOnibus.find_by_sql("select e.* from ponto_onibus e, bairros_oficial b
+                  where e.the_geom && b.the_geom and
+                  st_intersects(e.the_geom, b.the_geom) and
+                  b.id = "+params[:id]+" order by e.gid")
+    @antenas = AldeiaDigital.find_by_sql("select e.* from aldeia_digital_oficial e, bairros_oficial b
                   where e.the_geom && b.the_geom and
                   st_intersects(e.the_geom, b.the_geom) and
                   b.id = "+params[:id]+" order by e.gid")

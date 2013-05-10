@@ -2,6 +2,10 @@
 Geo::Application.routes.draw do
 
 
+  get "aldeia_digital/index"
+
+  get "aldeia_digital/show"
+
   get "pontos_onibus/index"
 
   get "pontos_onibus/show"

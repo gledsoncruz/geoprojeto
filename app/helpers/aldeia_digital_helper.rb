@@ -1,0 +1,2 @@
+module AldeiaDigitalHelper
+end

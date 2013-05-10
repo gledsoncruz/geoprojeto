@@ -21,9 +21,9 @@
     <% @educacaos.each do |e| %>
       <tr>
         <td><%= e.id %></td>
-        <td><%= e.ensino %></td>
-        <td><%= e.nome %></td>
-        <td><%= e.tipo %></td>
+        <td><%= e.ensino.to_s.upcase %></td>
+        <td><%= e.nome.to_s.upcase %></td>
+        <td><%= e.tipo.to_s.upcase %></td>
         <td><%= e.email %></td>
       </tr>
     <% end %>

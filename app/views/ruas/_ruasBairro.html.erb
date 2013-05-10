@@ -1,0 +1,31 @@
+ <div id="ruas">
+  <table class="table table-bordered table-hover table-condensed">
+    <col width="5%">
+    <col width="15%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Tipo</th>
+    <th>Nome</th>
+    <th>Comprimento no bairro</th>
+    <th>Comprimento total</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% if @ruas.empty? %>
+      <tr>
+        <td colspan=4>Não exitem registros com o valor informado</td>
+      </tr>
+    <% end %>
+    <% @ruas.each do |rua| %>
+      <tr>
+        <td><%= rua.id %></td>
+        <td><%= rua.tipo_rua.humanize %></td>
+        <td><%= rua.nome %></td>
+        <td><%= rua.parcial.to_f.round(2) %> metros</td>
+        <td><%= rua.total.to_f.round(2) %> metros</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

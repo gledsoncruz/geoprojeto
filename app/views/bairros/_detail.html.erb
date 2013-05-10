@@ -1,0 +1,30 @@
+<table class="table table-bordered table-hover table-condensed">
+  <col width="30%">
+  <tbody>
+      <tr>
+        <td><b>Nome:</b></td>
+        <td><%= @bairro[0].nome %></td>
+      </tr>
+       <tr>
+        <td><b>Doc. Regularização:</b></td>
+        <td><%= @bairro[0].doc_reg_nomen_bairro %></td>
+      </tr>
+      <tr>
+        <td><b>Pop. Masc (Censo IBGE/2010):</b></td>
+        <td><%= @bairro[0].pop_masc %></td>
+      </tr>
+      <tr>
+        <td><b>Pop. Fem (Censo IBGE/2010):</b></td>
+        <td><%= @bairro[0].pop_fem %></td>
+      </tr>
+       <tr>
+        <td><b>Pop. Total:</b></td>
+        <td><%= @bairro[0].pop_fem.to_i + @bairro[0].pop_masc.to_i %></td>
+      </tr>
+      <tr>
+        <td><b>Área:</b></td>
+        <td><%= @bairro[0].area.to_f.round(2) %> Km2</td>
+      </tr>
+
+  </tbody>
+</table>

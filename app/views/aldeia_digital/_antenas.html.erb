@@ -1,4 +1,4 @@
-<div id="pontos_onibus">
+<div id="antenas">
   <table class="table table-bordered table-hover table-condensed">
     <col width="5%">
     <col width="35%">
@@ -8,22 +8,20 @@
     <th>Cobertura</th>
     <th>Sinalização</th>
     <th>Capacidade</th>
-    <th>Possui Banco?</th>
   </tr>
   </thead>
   <tbody>
-  	<% if @pontosOnibus.empty? %>
+  	<% if @antenas.empty? %>
       <tr>
         <td colspan=5>Não exitem registros com o valor informado</td>
       </tr>
     <% end %>
-    <% @pontosOnibus.each do |s| %>
+    <% @antenas.each do |s| %>
       <tr>
         <td><%= s.gid %></td>
-        <td><%= s.cobertura.to_s.humanize.upcase %></td>
-        <td><%= s.sinalizacao.to_s.humanize.upcase %></td>
-        <td><%= s.capacidade.to_s.upcase %></td>
-        <td><%= s.banco.to_s.upcase %></td>
+        <td><%= s.name.to_s.upcase %></td>
+        <td><%= s.situacao.to_s.upcase %></td>
+        <td><%= s.tipo.to_s.upcase %></td>
       </tr>
     <% end %>
   </tbody>
