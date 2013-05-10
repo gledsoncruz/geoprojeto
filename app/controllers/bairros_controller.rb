@@ -38,7 +38,10 @@ class BairrosController < ApplicationController
                   st_intersects(e.the_geom, b.the_geom) and
                   b.id = "+params[:id]+" order by e.descricao")
 
-    #@bairro = Bairro.find(params[:id])
+    @pontosOnibus = PontosOnibus.find_by_sql("select e.* from ponto_onibus e, bairros_oficial b
+                  where e.the_geom && b.the_geom and
+                  st_intersects(e.the_geom, b.the_geom) and
+                  b.id = "+params[:id]+" order by e.gid")
 
     respond_to do |format|
       format.html # show.html.erb

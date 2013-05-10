@@ -2,6 +2,12 @@
 Geo::Application.routes.draw do
 
 
+  get "pontos_onibus/index"
+
+  get "pontos_onibus/show"
+
+  get "pontos_onibus/_onibus"
+
   get "saudes/index"
 
   get "saudes/show"

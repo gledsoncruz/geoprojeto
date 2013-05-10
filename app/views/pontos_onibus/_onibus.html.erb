@@ -1,0 +1,32 @@
+<div id="pontos_onibus">
+  <table class="table table-bordered table-hover table-condensed">
+    <col width="5%">
+    <col width="35%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Cobertura</th>
+    <th>Sinalização</th>
+    <th>Capacidade</th>
+    <th>Banco</th>
+  </tr>
+  </thead>
+  <tbody>
+  	<% if @pontosOnibus.empty? %>
+      <tr>
+        <td colspan=5>Não exitem registros com o valor informado</td>
+      </tr>
+    <% end %>
+    <% @pontosOnibus.each do |s| %>
+      <tr>
+        <td><%= s.gid %></td>
+        <td><%= s.cobertura %></td>
+        <td><%= s.sinalizacao %></td>
+        <td><%= s.capacidade %></td>
+        <td><%= s.banco %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
