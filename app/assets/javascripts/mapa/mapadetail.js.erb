@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
-html2canvas(document.getElementById('map'),
-{
-    logging: false,
-    profile: false,
-    useCORS: true,
-  onrendered: function(canvas) {
-    //document.body.appendChild(canvas);
-    var myImage = canvas.toDataURL("image/png");
-    window.open(myImage);
-  }
-});
+// html2canvas(document.getElementById('map'),
+// {
+//     logging: false,
+//     profile: false,
+//     useCORS: true,
+//   onrendered: function(canvas) {
+//     //document.body.appendChild(canvas);
+//     var myImage = canvas.toDataURL("image/png");
+//     window.open(myImage);
+//   }
+// });
 
 
 L.Icon.Default.imagePath = "/assets"
