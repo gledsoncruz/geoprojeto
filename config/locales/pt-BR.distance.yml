@@ -1,0 +1,11 @@
+distance:
+  centi:
+    one: "centimetro"
+    other: "centimetros"
+  unit:
+    one: "metro"
+    other: "metros"
+  thousand:
+    one: "kilometro"
+    other: "kilometros"
+  billion: "gazillion-distance"

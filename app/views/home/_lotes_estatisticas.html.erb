@@ -1,0 +1,14 @@
+<table class="table table-bordered table-hover table-condensed">
+  <tbody>
+    <tr>
+      <th>Tipo Imóvel</th>
+      <th>Total</th>
+    </tr>
+  <% @fazendas.each do |fazenda| %>
+    <tr>
+      <td><%=fazenda.tipoimovel%></td>
+      <td><%=fazenda.total%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

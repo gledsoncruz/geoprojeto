@@ -18,7 +18,7 @@
         <td><%= bairro.pop_masc %></td>
         <td><%= bairro.pop_fem %></td>
         <td><%= bairro.pop_fem.to_i + bairro.pop_masc.to_i %></td>
-        <td style="text-align: right;"><%= bairro.area.to_f.round(2) %> Km2</td>
+        <td style="text-align: right;"><%= number_with_precision(bairro.area, :precision => 2, :separator => ',', :delimiter => '.') %> Km2</td>
         <td style="text-align: center;"><%= link_to '', bairro, :class => 'icon-search', :title => 'Visualizar' %></td>
         <% if can? :update, bairro %>
           <td style="text-align: center;"><%= link_to '', edit_bairro_path(bairro), :class => 'icon-pencil', :title => 'Editar' %></td>

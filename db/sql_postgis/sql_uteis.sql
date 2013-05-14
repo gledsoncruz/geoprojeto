@@ -25,3 +25,9 @@ from ruas r, bairros_oficial b
 where r.id_rua = 1580 and
 r.the_geom && b.the_geom and
 st_intersects(r.the_geom, b.the_geom)
+
+-- Consulta com buffer
+
+select l.descricao_linha, l.n_linha, l.empresa from linhas_onibus l, ponto_onibus p
+where st_intersects(st_buffer(p.the_geom, 15), l.the_geom) and
+p.id = 732

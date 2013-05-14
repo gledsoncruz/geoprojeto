@@ -1,15 +1,70 @@
-<div class="span1 offset4">
-	<% if current_user.role == "admin" %>
-		<%=link_to(image_tag("user.png"), users_path) %></br>
-		Usuários
-	<% end %>
+
+<h4>Informações Gerais da Cidade de Volta Redonda</h4>
+<table class="table table-bordered table-hover table-condensed">
+  <tbody>
+    <tr>
+      <td>Área Total</td>
+      <td><%= number_with_precision(@area[0].area, :precision => 2, :separator => ',', :delimiter => '.') %> km2</td>
+    </tr>
+
+    <tr>
+      <td>Áreas Verdes Total</td>
+      <td><%= number_with_precision(@areaVerde[0].area_total, :precision => 2, :separator => ',', :delimiter => '.') %> km2</td>
+    </tr>
+
+    <tr>
+      <td>Comprimento total de ruas</td>
+      <td><%= number_with_precision(@lenghtRua[0].km, :precision => 2, :separator => ',', :delimiter => '.') %> Km</td>
+    </tr>
+
+    <tr>
+      <td>Total de Bairros</td>
+      <td><%= @totBairros[0].total %> bairros</td>
+    </tr>
+
+    <tr>
+      <td>Total de Loteamentos</td>
+      <td><%= @totLoteamento[0].total %> loteamentos</td>
+    </tr>
+
+    <tr>
+      <td>Pontos Ônibus</td>
+      <td><%= @pontosOnibus[0].total %> pontos</td>
+    </tr>
+
+     <tr>
+      <td>Aldeia Digital</td>
+      <td><%= @antenas[0].total %> antenas</td>
+    </tr>
+
+    <tr>
+      <td>Câmeras de Segurança</td>
+      <td><%= @cameras[0].total %> câmeras</td>
+    </tr>
+
+    <tr>
+      <td>Educação Municipal</td>
+      <td><%= @educacao[0].total %> unidades educacionais</td>
+    </tr>
+
+    <tr>
+      <td>Saude Municipal</td>
+      <td><%= @saude[0].total %> unidades de saude</td>
+    </tr>
+
+	<tr>
+      <td>Praças</td>
+      <td><%= @pracas[0].total %> praças</td>
+    </tr>
+
+    <tr>
+      <td>CRAS</td>
+      <td><%= @cras[0].total %> unidades CRAS</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
 </div>
-<div class="span1">
-	<%=link_to(image_tag("earth.png"), "/mapas/index") %></br>
-		Mapa Virtual
-</div>
-<div class="span1">
-	<%=link_to(image_tag("exit.png"), destroy_user_session_path, :method => :delete) %></br>
-		Sair
-</div>
-<div class ="span5"></div>
