@@ -13,6 +13,7 @@ class BairrosController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @bairros, :except => :the_geom}
       format.xml { render :xml => @bairros, :except => :the_geom }
+
     end
   end
 

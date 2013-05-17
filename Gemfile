@@ -44,6 +44,7 @@ gem 'prawn'
 gem 'thin'
 gem 'activerecord-oracle_enhanced-adapter', :git => "git://github.com/rsim/oracle-enhanced.git"
 gem 'ruby-plsql'
+#gem 'wicked_pdf'
 #gem 'pdfkit'
 
 
