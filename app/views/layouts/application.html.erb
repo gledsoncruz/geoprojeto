@@ -17,9 +17,9 @@
         <div class="row-fluid">
             <!-- COLUNA OCUPANDO 2 ESPAÇOS NO GRID -->
             <%= render 'layouts/navigation' %>
-
+          <% if user_signed_in? %>
             <div class="span2">
-              <% if user_signed_in? %>
+
               <div class="nav-fixed">
                 <h4>Menu</h4>
                  <ul class="nav nav-tabs nav-stacked">
@@ -38,10 +38,9 @@
                             <li><%= link_to "Usuários Logados", logged_users_path %></li>
                           </ul>
                   <% end %>
-              <% end %>
+
               </div>
             </div>
-
             <!-- COLUNA OCUPANDO 10 ESPAÇOS NO GRID -->
             <div class="span9">
                 <% if user_signed_in? %>
@@ -50,6 +49,11 @@
              <%= yield %>
             </div>
         </div>
+
+          <% end %>
+          <% unless user_signed_in? %>
+        <%= yield %>
+        <% end %>
     </div>
 
 
