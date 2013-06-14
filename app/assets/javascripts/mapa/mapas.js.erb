@@ -110,14 +110,27 @@ function educacaoJson(data) {
   educacao.addData(data);
 }
 
+function abrirModal() {
+  $('#myModal').modal('show');
+}
+
 function lotesJson(data) {
     lotes.addData(data);
     lotesCount = Object.keys(data.features).length;
     console.log(lotesCount);
+    if (lotesCount > 0){
     map.fitBounds(lotes.getBounds());
+  }else{
+
+    $('#myModal2').modal('show');
+
+  }
+
 }
 
 function carregarLayer(insc){
+
+  if (insc.length > 7) {
 
  console.log(insc);
   lotes.clearLayers();
@@ -125,15 +138,25 @@ function carregarLayer(insc){
     url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:lotesvr&srsName=EPSG:4326&outputFormat=json&cql_filter=(cadastro='"+insc+"')&format_options=callback:getJson",
     dataType : 'jsonp',
     jsonpCallback: 'getJson',
-    success: lotesJson
+    success: lotesJson//,
+    //error: abrirModal
   });
   lotes.addTo(map);
+}else{
+
+  $('#myModal').modal('show');
+
+
+};
 }
+
+
 
 $("#btnInsc").click( function()
 {
   //console.log($("#insc").val());
-  carregarLayer($("#insc").val())
+  carregarLayer($("#insc").val());
+
 });
 
 $("#showLote").click( function()
