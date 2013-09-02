@@ -31,7 +31,7 @@ var bairros = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
             transparent: true
         });
 var logradouros = new L.TileLayer.WMS("http://geo.epdvr.com.br/geoserver/wms", {
-            layers: 'nebulosa:eixo_rua',
+            layers: 'nebulosa:logradouros',
             format: 'image/png',
             transparent: true
         });
@@ -73,7 +73,7 @@ function ruasJson(data) {
 
   ruas.clearLayers();
   $.ajax({
-    url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:eixo_rua&srsName=EPSG:4326&outputFormat=json&cql_filter=(id_rua='"+$("#id_rua").val()+"')&format_options=callback:getJson",
+    url : "http://geo.epdvr.com.br/geoserver/nebulosa/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=nebulosa:logradouros&srsName=EPSG:4326&outputFormat=json&cql_filter=(id_rua='"+$("#id_rua").val()+"')&format_options=callback:getJson",
     dataType : 'jsonp',
     jsonpCallback: 'getJson',
     success: ruasJson

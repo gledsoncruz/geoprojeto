@@ -3,7 +3,7 @@ class Rua < ActiveRecord::Base
   #attr_accessible :id_rua, :nome, :the_geom
 
   #self.rgeo_factory_generator = RGeo::Geos.factory_generator(:srid => 29193)
-  self.table_name = "ruas"
+  self.table_name = "logradouros"
   self.primary_key = 'id'
 
 	def self.search(search)

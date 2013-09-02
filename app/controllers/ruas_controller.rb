@@ -9,7 +9,7 @@ class RuasController < ApplicationController
 
     if nome.present?
       @ruas = Rua.paginate_by_sql("SELECT b.id as id_bairro, b.nome as bairro, r.*
-                        from ruas r, bairros_oficial b
+                        from logradouros r, bairros_oficial b
                         where r.nome like '%"+nome.upcase+"%' and
                         r.the_geom && b.the_geom and
                         st_intersects(r.the_geom, b.the_geom)", :page => params[:page], :per_page => 10)
@@ -27,7 +27,7 @@ class RuasController < ApplicationController
 
   def detail
     @rua = Rua.find_by_sql("SELECT b.id as id_bairro, b.nome as bairro, r.*
-                        from ruas r, bairros_oficial b
+                        from logradouros r, bairros_oficial b
                         where r.id = "+params[:id]+" and
                         b.id = "+params[:id_bairro]+" and
                         r.the_geom && b.the_geom and
@@ -44,7 +44,7 @@ class RuasController < ApplicationController
 
     @rua = Rua.find_by_sql("SELECT b.id as id_bairro, b.nome as bairro, r.*, st_length(r.the_geom) as tamanho,
                         st_length(st_intersection(r.the_geom, b.the_geom))  as parcial
-                        from ruas r, bairros_oficial b
+                        from logradouros r, bairros_oficial b
                         where r.id = "+params[:id]+" and
                         b.id = "+params[:id_bairro]+" and
                         r.the_geom && b.the_geom and

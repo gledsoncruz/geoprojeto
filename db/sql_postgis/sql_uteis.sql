@@ -1,3 +1,11 @@
+--AREA DE TODOS OS LOTES POR BAIRRO
+
+SELECT b.nome, round(sum(st_area(l.the_geom)/1000)::numeric,2) as area_lotes, round(st_area(b.the_geom)::numeric/1000,2) as area_bairro, round(sum(f.areaconstruida)::numeric/1000,2) as area_construida from lotesvr l, bairros_oficial b, tb_fazenda f
+WHERE ST_Within(l.the_geom,b.the_geom) AND l.cadastro = f.insc_base
+GROUP BY b.nome, area_bairro
+ORDER BY b.nome
+
+
 -- Saber qual zoneamento um determinado lote está de acordo com a inscricao base
 -- ST_Overlaps - pega o lote que pelo menos encosta na poligonal do zoneamento
 -- ST_Within - pega o lote que esta totalmente dentro da poligonal do zoneamento

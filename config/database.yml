@@ -1,10 +1,10 @@
 oracle_development:
   adapter: oracle_enhanced
-  host: 192.168.1.173
+  host: 192.168.1.176
   port: 1521
-  database: dbgeo
-  username: geo
-  password: geo
+  database: dbpmvr
+  username: gledson_cruz
+  password: siggeo2013
 
 development:
   adapter: postgis
@@ -36,11 +36,11 @@ production:
 
 oracle_production:
   adapter: oracle_enhanced
-  host: 192.168.1.173
+  host: 192.168.1.176
   port: 1521
-  database: dbgeo
-  username: geo
-  password: geo
+  database: dbpmvr
+  username: gledson_cruz
+  password: siggeo2013
 
 # test:
 #   adapter: postgis

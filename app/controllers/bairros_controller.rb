@@ -23,7 +23,7 @@ class BairrosController < ApplicationController
 
     @bairro = Bairro.find_by_sql(
       "select st_area(b.the_geom)/1000 as area, b.* from bairros_oficial b where id ="+params[:id]+" order by b.nome")
-    @ruas = Rua.find_by_sql("select r.*, st_length(st_intersection(r.the_geom, b.the_geom)) as parcial, st_length(r.the_geom) as total from ruas r, bairros_oficial b
+    @ruas = Rua.find_by_sql("select r.*, st_length(st_intersection(r.the_geom, b.the_geom)) as parcial, st_length(r.the_geom) as total from logradouros r, bairros_oficial b
               where r.the_geom && b.the_geom and
               st_intersects(r.the_geom, b.the_geom) and
               not id_rua = 0 and
